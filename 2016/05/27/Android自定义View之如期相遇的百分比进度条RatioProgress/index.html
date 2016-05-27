@@ -1,0 +1,723 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="View," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="[TOC]
+需求简述：当进入比赛详情页面时，根据点赞数按比例分割整个屏幕宽度，这个过程以动态进度条的形式显示
+实际应用效果图：
+Demo效果图：
+分析自定义View的基本步骤：
+
+自定义View的属性
+在View的构造方法中获得我们自定义的属性
+重写onMesure（非必须，大部分情况下需要）
+重写onDraw
+
+
+自定义View属性：在res/values/  下建立一个attrs.xml ，在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android自定义View之如期相遇的百分比进度条RatioProgress">
+<meta property="og:url" content="http://yoursite.com/2016/05/27/Android自定义View之如期相遇的百分比进度条RatioProgress/index.html">
+<meta property="og:site_name" content="SuS's Blog">
+<meta property="og:description" content="[TOC]
+需求简述：当进入比赛详情页面时，根据点赞数按比例分割整个屏幕宽度，这个过程以动态进度条的形式显示
+实际应用效果图：
+Demo效果图：
+分析自定义View的基本步骤：
+
+自定义View的属性
+在View的构造方法中获得我们自定义的属性
+重写onMesure（非必须，大部分情况下需要）
+重写onDraw
+
+
+自定义View属性：在res/values/  下建立一个attrs.xml ，在">
+<meta property="og:image" content="http://img.blog.csdn.net/20160526182500108">
+<meta property="og:image" content="http://img.blog.csdn.net/20160526182514271">
+<meta property="og:updated_time" content="2016-05-27T02:34:19.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android自定义View之如期相遇的百分比进度条RatioProgress">
+<meta name="twitter:description" content="[TOC]
+需求简述：当进入比赛详情页面时，根据点赞数按比例分割整个屏幕宽度，这个过程以动态进度条的形式显示
+实际应用效果图：
+Demo效果图：
+分析自定义View的基本步骤：
+
+自定义View的属性
+在View的构造方法中获得我们自定义的属性
+重写onMesure（非必须，大部分情况下需要）
+重写onDraw
+
+
+自定义View属性：在res/values/  下建立一个attrs.xml ，在">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160526182500108">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Android自定义View之如期相遇的百分比进度条RatioProgress | SuS's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">SuS's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Much to Live For</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android自定义View之如期相遇的百分比进度条RatioProgress
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-27T10:34:00+08:00" content="2016-05-27">
+              2016-05-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/27/Android自定义View之如期相遇的百分比进度条RatioProgress/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/27/Android自定义View之如期相遇的百分比进度条RatioProgress/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a><font color="#C4573C" size="5" face="黑体">需求</font></h1><h2 id="简述："><a href="#简述：" class="headerlink" title="简述："></a><font color="#C4573C" size="4" face="黑体">简述：</font></h2><p>当进入比赛详情页面时，根据点赞数按比例分割整个屏幕宽度，这个过程以动态进度条的形式显示</p>
+<h2 id="实际应用效果图："><a href="#实际应用效果图：" class="headerlink" title="实际应用效果图："></a><font color="#C4573C" size="4" face="黑体">实际应用效果图：</font></h2><p><img src="http://img.blog.csdn.net/20160526182500108" alt="这里写图片描述"></p>
+<h2 id="Demo效果图："><a href="#Demo效果图：" class="headerlink" title="Demo效果图："></a><font color="#C4573C" size="4" face="黑体">Demo效果图：</font></h2><p><img src="http://img.blog.csdn.net/20160526182514271" alt="这里写图片描述"></p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a><font color="#C4573C" size="5" face="黑体">分析</font></h1><h2 id="自定义View的基本步骤："><a href="#自定义View的基本步骤：" class="headerlink" title="自定义View的基本步骤："></a><font color="#C4573C" size="4" face="黑体">自定义View的基本步骤：</font></h2><blockquote>
+<ul>
+<li>自定义View的属性</li>
+<li>在View的构造方法中获得我们自定义的属性</li>
+<li>重写onMesure（非必须，大部分情况下需要）</li>
+<li>重写onDraw</li>
+</ul>
+</blockquote>
+<h2 id="自定义View属性："><a href="#自定义View属性：" class="headerlink" title="自定义View属性："></a><font color="#C4573C" size="4" face="黑体">自定义View属性：</font></h2><p>在res/values/  下建立一个attrs.xml ，在里面定义我们的属性和声明我们的整个样式，format是指该属性的取值类型</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">"RatioProgress"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"direction"</span> <span class="attr">format</span>=<span class="string">"string"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"progressColor"</span> <span class="attr">format</span>=<span class="string">"color"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里，我根据需求定义了两个属性，分别为direction和progressColor</p>
+<blockquote>
+<ul>
+<li>direction表示进度条的绘制方向，有两个值，分别为“left”和“right”</li>
+</ul>
+</blockquote>
+<p>“left”表示从左到右进行显示,“right”表示从右向左进行显示</p>
+<blockquote>
+<ul>
+<li>progressColor表示进度条的显示背景颜色</li>
+</ul>
+</blockquote>
+<h2 id="RatioProgress分析："><a href="#RatioProgress分析：" class="headerlink" title="RatioProgress分析："></a><font color="#C4573C" size="4" face="黑体">RatioProgress分析：</font></h2><blockquote>
+<ul>
+<li>通过rectBgBounds 绘制背景矩形，进行占位，背景设置为透明的</li>
+<li><p>通过rectProgressBounds来绘制进度条，背景颜色就是通过如下自定义属性进行设置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sus:progressColor="@color/CommonTextSelect"</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>bgPaint和progressPaint分别为绘制背景和进度条的画笔</p>
+</li>
+</ul>
+</blockquote>
+<font color="#C4573C" size="3" face="黑体">关键步骤之重写onDraw方法</font><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">super</span>.onDraw(canvas);</span><br><span class="line">    canvas.drawRect(rectBgBounds, bgPaint);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (TextUtils.equals(direction, <span class="string">"left"</span>)) &#123;</span><br><span class="line">        rectProgressBounds = <span class="keyword">new</span> RectF(<span class="number">0</span>, <span class="number">0</span>, progress, layout_height);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (TextUtils.equals(direction, <span class="string">"right"</span>)) &#123;</span><br><span class="line">        rectProgressBounds = <span class="keyword">new</span> RectF(getWidth() - progress, <span class="number">0</span>, getWidth(), layout_height);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        rectProgressBounds = <span class="keyword">new</span> RectF(<span class="number">0</span>, <span class="number">0</span>, progress, layout_height);</span><br><span class="line">    &#125;</span><br><span class="line">    canvas.drawRect(rectProgressBounds, progressPaint);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>&gt;<em> 这里根据direction属性来设置rectProgressBounds 的坐标位置<br><br>&gt;</em> 我在 setupBounds()中通过start方法开启一个线程<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Runnable r = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        running = <span class="keyword">true</span>;</span><br><span class="line">        Log.e(<span class="string">"thread"</span>, <span class="string">"progress="</span>+progress);</span><br><span class="line">        Log.e(<span class="string">"thread"</span>, <span class="string">"getWidth()="</span>+getWidth());</span><br><span class="line">        <span class="keyword">while</span> (progress &lt; getWidth()) &#123;</span><br><span class="line">            incrementProgress();</span><br><span class="line">            <span class="comment">//progress++;</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(sleepDelay);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        running = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!running) &#123;</span><br><span class="line">        progress = <span class="number">0</span>;</span><br><span class="line">        Thread s = <span class="keyword">new</span> Thread(r);</span><br><span class="line">        s.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>&gt;* 并通过incrementProgress方法递增progress，然后再通过handler发消息不断进行绘制<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">  * Increment the progress by 1 (of 100)</span><br><span class="line">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">incrementProgress</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     isProgress = <span class="keyword">true</span>;</span><br><span class="line">     progress++;</span><br><span class="line">     <span class="comment">/*</span><br><span class="line">      * if (progress &gt; 200) progress = 100;</span><br><span class="line">      */</span></span><br><span class="line">     spinHandler.sendEmptyMessage(<span class="number">0</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><br><br><font color="#C4573C" size="3" face="黑体">RatioProgress 完整代码：</font><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RatioProgress</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Sizes (with defaults)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> layout_height = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> layout_width = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Colors (with defaults)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> bgColor = Color.TRANSPARENT;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//private int progressColor = 0xFF339933;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Paints</span></span><br><span class="line">    <span class="keyword">private</span> Paint progressPaint = <span class="keyword">new</span> Paint();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Paint bgPaint = <span class="keyword">new</span> Paint();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Rectangles</span></span><br><span class="line">    <span class="keyword">private</span> RectF rectBgBounds = <span class="keyword">new</span> RectF();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> RectF rectProgressBounds = <span class="keyword">new</span> RectF();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> progress = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> isProgress;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String direction;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * progress的颜色</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> progressColor;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">boolean</span> running;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> sleepDelay;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSleepDelay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sleepDelay;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSleepDelay</span><span class="params">(<span class="keyword">int</span> sleepDelay)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sleepDelay = sleepDelay;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Handler spinHandler = <span class="keyword">new</span> Handler() &#123;</span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * This is the code that will increment the progress variable and so</span><br><span class="line">         * spin the wheel</span><br><span class="line">         */</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">            invalidate();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@param</span> context</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RatioProgress</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(context, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@param</span> context</span><br><span class="line">     * <span class="doctag">@param</span> attrs</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RatioProgress</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(context, attrs, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@param</span> context</span><br><span class="line">     * <span class="doctag">@param</span> attrs</span><br><span class="line">     * <span class="doctag">@param</span> defStyleAttr</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RatioProgress</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">/**</span><br><span class="line">         * 获得我们所定义的自定义样式属性</span><br><span class="line">         */</span></span><br><span class="line">        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.RatioProgress, defStyleAttr, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> n = a.getIndexCount();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> attr = a.getIndex(i);</span><br><span class="line">            <span class="keyword">switch</span> (attr)</span><br><span class="line">            &#123;</span><br><span class="line">            <span class="keyword">case</span> R.styleable.RatioProgress_direction:</span><br><span class="line">                direction = a.getString(attr);</span><br><span class="line">                Log.e(<span class="string">"direction-----------------"</span>, direction);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.styleable.RatioProgress_progressColor:</span><br><span class="line">                progressColor = a.getColor(attr, Color.TRANSPARENT);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        a.recycle();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onSizeChanged</span><span class="params">(<span class="keyword">int</span> w, <span class="keyword">int</span> h, <span class="keyword">int</span> oldw, <span class="keyword">int</span> oldh)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onSizeChanged(w, h, oldw, oldh);</span><br><span class="line">        <span class="comment">// Share the dimensions</span></span><br><span class="line">        layout_width = w;</span><br><span class="line">        Log.i(<span class="string">"layout_width"</span>, layout_width + <span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        layout_height = h;</span><br><span class="line">        Log.i(<span class="string">"layout_height"</span>, layout_height + <span class="string">""</span>);</span><br><span class="line">        setupBounds();</span><br><span class="line">        setupPaints();</span><br><span class="line">        invalidate();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setupPaints</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        bgPaint.setColor(bgColor);</span><br><span class="line">        bgPaint.setAntiAlias(<span class="keyword">true</span>);</span><br><span class="line">        bgPaint.setStyle(Style.FILL);</span><br><span class="line"></span><br><span class="line">        progressPaint.setColor(progressColor);</span><br><span class="line">        progressPaint.setAntiAlias(<span class="keyword">true</span>);</span><br><span class="line">        progressPaint.setStyle(Style.FILL);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setupBounds</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> width = getWidth(); <span class="comment">// this.getLayoutParams().width;</span></span><br><span class="line">        Log.i(<span class="string">"width"</span>, width + <span class="string">""</span>);</span><br><span class="line">        <span class="keyword">int</span> height = getHeight(); <span class="comment">// this.getLayoutParams().height;</span></span><br><span class="line">        Log.i(<span class="string">"height"</span>, height + <span class="string">""</span>);</span><br><span class="line">        rectBgBounds = <span class="keyword">new</span> RectF(<span class="number">0</span>, <span class="number">0</span>, width, height);</span><br><span class="line">        start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDraw(canvas);</span><br><span class="line"></span><br><span class="line">        canvas.drawRect(rectBgBounds, bgPaint);</span><br><span class="line"></span><br><span class="line">        Log.i(<span class="string">"progress"</span>, progress + <span class="string">""</span>);</span><br><span class="line">        <span class="keyword">if</span> (TextUtils.equals(direction, <span class="string">"left"</span>)) &#123;</span><br><span class="line">            rectProgressBounds = <span class="keyword">new</span> RectF(<span class="number">0</span>, <span class="number">0</span>, progress, layout_height);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (TextUtils.equals(direction, <span class="string">"right"</span>)) &#123;</span><br><span class="line">            rectProgressBounds = <span class="keyword">new</span> RectF(getWidth() - progress, <span class="number">0</span>, getWidth(), layout_height);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            rectProgressBounds = <span class="keyword">new</span> RectF(<span class="number">0</span>, <span class="number">0</span>, progress, layout_height);</span><br><span class="line">        &#125;</span><br><span class="line">        canvas.drawRect(rectProgressBounds, progressPaint);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * Increment the progress by 1 (of 100)</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">incrementProgress</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        isProgress = <span class="keyword">true</span>;</span><br><span class="line">        progress++;</span><br><span class="line">        <span class="comment">/*</span><br><span class="line">         * if (progress &gt; 200) progress = 100;</span><br><span class="line">         */</span></span><br><span class="line">        spinHandler.sendEmptyMessage(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * Increment the progress by 1 (of 100)</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unIncrementProgress</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        isProgress = <span class="keyword">true</span>;</span><br><span class="line">        progress--;</span><br><span class="line">        <span class="comment">/*</span><br><span class="line">         * if (progress &lt; 1) progress = 100;</span><br><span class="line">         */</span></span><br><span class="line">        spinHandler.sendEmptyMessage(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * Set the progress to a specific value</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setProgress</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        progress = i;</span><br><span class="line">        spinHandler.sendEmptyMessage(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">final</span> Runnable r = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            running = <span class="keyword">true</span>;</span><br><span class="line">            Log.e(<span class="string">"thread"</span>, <span class="string">"progress="</span>+progress);</span><br><span class="line">            Log.e(<span class="string">"thread"</span>, <span class="string">"getWidth()="</span>+getWidth());</span><br><span class="line">            <span class="keyword">while</span> (progress &lt; getWidth()) &#123;</span><br><span class="line">                incrementProgress();</span><br><span class="line">                <span class="comment">//progress++;</span></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(sleepDelay);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            running = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!running) &#123;</span><br><span class="line">            progress = <span class="number">0</span>;</span><br><span class="line">            Thread s = <span class="keyword">new</span> Thread(r);</span><br><span class="line">            s.start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>## <font color="#C4573C" size="4" face="黑体">布局以及代码中的使用：</font><br>### <font color="#C4573C" size="4" face="黑体">布局文件</font>
+
+<p>这里在LinearLayout 中定义了两个RatioProgress<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span><br><span class="line">    <span class="attr">xmlns:sus</span>=<span class="string">"http://schemas.android.com/apk/res/com.soulrelay.ratioprogress"</span></span><br><span class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span><br><span class="line">    <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span> &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">com.soulrelay.ratioprogress.RatioProgress</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/left_ratio_progress"</span></span><br><span class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">        <span class="attr">android:layout_height</span>=<span class="string">"4dp"</span></span><br><span class="line">        <span class="attr">android:layout_marginTop</span>=<span class="string">"100dp"</span></span><br><span class="line">        <span class="attr">sus:direction</span>=<span class="string">"left"</span></span><br><span class="line">        <span class="attr">sus:progressColor</span>=<span class="string">"@color/CommonTextSelect"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">com.soulrelay.ratioprogress.RatioProgress</span></span><br><span class="line">        <span class="attr">android:id</span>=<span class="string">"@+id/right_ratio_progress"</span></span><br><span class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">        <span class="attr">android:layout_height</span>=<span class="string">"4dp"</span></span><br><span class="line">        <span class="attr">android:layout_marginLeft</span>=<span class="string">"4dp"</span></span><br><span class="line">        <span class="attr">android:layout_marginTop</span>=<span class="string">"100dp"</span></span><br><span class="line">        <span class="attr">sus:direction</span>=<span class="string">"right"</span> </span><br><span class="line">        <span class="attr">sus:progressColor</span>=<span class="string">"@color/CommonSelect"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="实际java代码中的控制"><a href="#实际java代码中的控制" class="headerlink" title="实际java代码中的控制"></a><font color="#C4573C" size="4" face="黑体">实际java代码中的控制</font></h3><p>这里主要是设置leftRatioProgress和rightRatioProgress的宽度，以及通过设置View中的线程休眠时间来控制进度条可以同时相遇<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    RatioProgress leftRatioProgress;</span><br><span class="line">    RatioProgress rightRatioProgress;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        </span><br><span class="line">        WindowManager manager = ((WindowManager) <span class="keyword">this</span></span><br><span class="line">                .getSystemService(Context.WINDOW_SERVICE));</span><br><span class="line"></span><br><span class="line">        DisplayMetrics dm = <span class="keyword">new</span> DisplayMetrics();</span><br><span class="line">        manager.getDefaultDisplay().getMetrics(dm);</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> w = dm.widthPixels;</span><br><span class="line"></span><br><span class="line">        leftRatioProgress = (RatioProgress) findViewById(R.id.left_ratio_progress);</span><br><span class="line">        LayoutParams lp = leftRatioProgress.getLayoutParams();</span><br><span class="line">        lp.width = w/<span class="number">3</span>;</span><br><span class="line">        leftRatioProgress.setLayoutParams(lp);</span><br><span class="line">        </span><br><span class="line">        rightRatioProgress = (RatioProgress) findViewById(R.id.right_ratio_progress);</span><br><span class="line">        LayoutParams lp1 = rightRatioProgress.getLayoutParams();</span><br><span class="line">        lp1.width = w*<span class="number">2</span>/<span class="number">3</span>;</span><br><span class="line">        rightRatioProgress.setLayoutParams(lp1);</span><br><span class="line">        </span><br><span class="line">        leftRatioProgress.setSleepDelay(<span class="number">6</span>);</span><br><span class="line">        rightRatioProgress.setSleepDelay(<span class="number">3</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>实际代码中我是根据用户的点赞数来分割屏幕宽度，设置View中的休眠时间</p>
+<p>以下代码仅供参考：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">  * 进度条形式显示赞数的比例</span><br><span class="line">  *</span><br><span class="line">  * <span class="doctag">@param</span> matchInfo</span><br><span class="line">  * <span class="doctag">@author</span> sushuai</span><br><span class="line">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initRatioProgress</span><span class="params">(MatchInfo matchInfo)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">int</span> width = SystemUtil.getScreenDisplayMinWidth(context);</span><br><span class="line">     <span class="keyword">int</span> leftWeight = matchInfo.getTeam1().getLikes();</span><br><span class="line">     <span class="keyword">int</span> rightWeight = matchInfo.getTeam2().getLikes();</span><br><span class="line">     <span class="keyword">int</span> leftWidth = <span class="number">0</span>, rightWidth = <span class="number">0</span>;</span><br><span class="line">     <span class="keyword">if</span> (leftWeight == <span class="number">0</span> &amp;&amp; rightWeight == <span class="number">0</span>) &#123;</span><br><span class="line">         leftWidth = rightWidth = width / <span class="number">2</span>;</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (leftWeight == <span class="number">0</span>) &#123;</span><br><span class="line">         rightWidth = width;</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (rightWeight == <span class="number">0</span>) &#123;</span><br><span class="line">         leftWidth = width;</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         leftWidth = width * leftWeight / (leftWeight + rightWeight);</span><br><span class="line">         rightWidth = width * rightWeight / (leftWeight + rightWeight);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (leftRatioProgress != <span class="keyword">null</span>) &#123;</span><br><span class="line">         LayoutParams lp = leftRatioProgress.getLayoutParams();</span><br><span class="line">         lp.width = leftWidth;</span><br><span class="line">         leftRatioProgress.setLayoutParams(lp);</span><br><span class="line">         <span class="keyword">if</span> (leftWidth &gt;= rightWidth) &#123;</span><br><span class="line">             leftRatioProgress.setSleepDelay(<span class="number">1</span>);</span><br><span class="line">         &#125; <span class="keyword">else</span> <span class="keyword">if</span> (leftWidth != <span class="number">0</span>) &#123;</span><br><span class="line">             leftRatioProgress.setSleepDelay(rightWidth / leftWidth);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (rightRatioProgress != <span class="keyword">null</span>) &#123;</span><br><span class="line">         LayoutParams lp = rightRatioProgress.getLayoutParams();</span><br><span class="line">         lp.width = rightWidth;</span><br><span class="line">         rightRatioProgress.setLayoutParams(lp);</span><br><span class="line">         <span class="keyword">if</span> (leftWidth &gt;= rightWidth &amp;&amp; rightWidth != <span class="number">0</span>) &#123;</span><br><span class="line">             rightRatioProgress.setSleepDelay(leftWidth / rightWidth);</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             rightRatioProgress.setSleepDelay(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a><font color="#C4573C" size="5" face="黑体">其它</font></h1><h2 id="Demo下载："><a href="#Demo下载：" class="headerlink" title="Demo下载："></a><font color="#C4573C" size="4" face="黑体">Demo下载：</font></h2><p><a href="http://download.csdn.net/detail/s003603u/9532387" target="_blank" rel="external">传送门</a></p>
+<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a><font color="#C4573C" size="4" face="黑体">参考链接：</font></h2><p><a href="http://blog.csdn.net/wangjinyu501/article/details/38298737" target="_blank" rel="external">1、http://blog.csdn.net/wangjinyu501/article/details/38298737</a><br><a href="http://blog.csdn.net/lmj623565791/article/details/24252901/" target="_blank" rel="external">1、http://blog.csdn.net/lmj623565791/article/details/24252901/</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat_qr.jpg" alt="SuS WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay_qr.jpg" alt="SuS Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/View/" rel="tag">#View</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/27/Android-architecture之MVC、MVP、MVVM、Data-Binding/" rel="next" title="Android-architecture之MVC、MVP、MVVM、Data-Binding">
+                <i class="fa fa-chevron-left"></i> Android-architecture之MVC、MVP、MVVM、Data-Binding
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/27/Android自定义View之如期相遇的百分比进度条RatioProgress/"
+           data-title="Android自定义View之如期相遇的百分比进度条RatioProgress" data-url="http://yoursite.com/2016/05/27/Android自定义View之如期相遇的百分比进度条RatioProgress/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="SuS" />
+          <p class="site-author-name" itemprop="name">SuS</p>
+          <p class="site-description motion-element" itemprop="description">手掌一散，流落走多少时光</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulrelay" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/s003603u" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">Links</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://pentiumrabbit.github.io/" target="_blank">赵儒阳</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简述："><span class="nav-number">1.1.</span> <span class="nav-text">简述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际应用效果图："><span class="nav-number">1.2.</span> <span class="nav-text">实际应用效果图：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo效果图："><span class="nav-number">1.3.</span> <span class="nav-text">Demo效果图：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义View的基本步骤："><span class="nav-number">2.1.</span> <span class="nav-text">自定义View的基本步骤：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义View属性："><span class="nav-number">2.2.</span> <span class="nav-text">自定义View属性：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RatioProgress分析："><span class="nav-number">2.3.</span> <span class="nav-text">RatioProgress分析：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实际java代码中的控制"><span class="nav-number">2.3.1.</span> <span class="nav-text">实际java代码中的控制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其它"><span class="nav-number">3.</span> <span class="nav-text">其它</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo下载："><span class="nav-number">3.1.</span> <span class="nav-text">Demo下载：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-number">3.2.</span> <span class="nav-text">参考链接：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SuS</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulrelay"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
