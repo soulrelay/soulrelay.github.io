@@ -1,0 +1,713 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="EventBus,事件总线库," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="[TOC]
+简介事件总线库，极大地简化了 Activities, Fragments, Threads, Services等各组件之间的通信。更少的代码，更好的体检EventBus的github地址
+优点
+
+简化组件之间的通信,对事件的发送者和接收者进行解耦;在Activity、Fragment、以及后台线程中运转良好;避免复杂和容易出错的依赖关系以及生命周期问题
+使你的代码更简单，代码可读性更好">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EventBus 更少的代码 更好的体验">
+<meta property="og:url" content="http://yoursite.com/2016/07/07/EventBus 更少的代码 更好的体验/index.html">
+<meta property="og:site_name" content="SuS's Blog">
+<meta property="og:description" content="[TOC]
+简介事件总线库，极大地简化了 Activities, Fragments, Threads, Services等各组件之间的通信。更少的代码，更好的体检EventBus的github地址
+优点
+
+简化组件之间的通信,对事件的发送者和接收者进行解耦;在Activity、Fragment、以及后台线程中运转良好;避免复杂和容易出错的依赖关系以及生命周期问题
+使你的代码更简单，代码可读性更好">
+<meta property="og:image" content="http://img.blog.csdn.net/20160707183142111">
+<meta property="og:image" content="http://img.blog.csdn.net/20160707180921690">
+<meta property="og:image" content="http://img.blog.csdn.net/20160707181044504">
+<meta property="og:image" content="http://img.blog.csdn.net/20160707160724357">
+<meta property="og:image" content="http://img.blog.csdn.net/20160707160737444">
+<meta property="og:image" content="http://img.blog.csdn.net/20160707160752467">
+<meta property="og:image" content="http://img.blog.csdn.net/20160707182411945">
+<meta property="og:image" content="http://img.blog.csdn.net/20160707165447744">
+<meta property="og:image" content="http://img.blog.csdn.net/20160707180337042">
+<meta property="og:updated_time" content="2016-07-07T10:49:40.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EventBus 更少的代码 更好的体验">
+<meta name="twitter:description" content="[TOC]
+简介事件总线库，极大地简化了 Activities, Fragments, Threads, Services等各组件之间的通信。更少的代码，更好的体检EventBus的github地址
+优点
+
+简化组件之间的通信,对事件的发送者和接收者进行解耦;在Activity、Fragment、以及后台线程中运转良好;避免复杂和容易出错的依赖关系以及生命周期问题
+使你的代码更简单，代码可读性更好">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160707183142111">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> EventBus 更少的代码 更好的体验 | SuS's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">SuS's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Much to Live For</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                EventBus 更少的代码 更好的体验
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-07T18:49:00+08:00" content="2016-07-07">
+              2016-07-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/07/EventBus 更少的代码 更好的体验/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/07/EventBus 更少的代码 更好的体验/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a><font color="#C4573C" size="5" face="黑体">简介</font></h2><p>事件总线库，极大地简化了 Activities, Fragments, Threads, Services等各组件之间的通信。更少的代码，更好的体检<br><img src="http://img.blog.csdn.net/20160707183142111" alt="这里写图片描述"><br>EventBus的<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">github地址</a></p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a><font color="#C4573C" size="5" face="黑体">优点</font></h2><blockquote>
+<ul>
+<li>简化组件之间的通信,对事件的发送者和接收者进行解耦;在Activity、Fragment、以及后台线程中运转良好;避免复杂和容易出错的依赖关系以及生命周期问题</li>
+<li>使你的代码更简单，代码可读性更好</li>
+<li>快</li>
+<li>小（~ 50K的jar包）</li>
+<li>在安装量多达100,000,000+ 的应用中实践，表现优异</li>
+<li><p>独具特色的功能，如线程分发，优先级订阅等。<br><center><br><img src="http://img.blog.csdn.net/20160707180921690" alt="这里写图片描述"><br></center></p>
+<h2 id="项目实战"><a href="#项目实战" class="headerlink" title="项目实战"></a><font color="#C4573C" size="5" face="黑体">项目实战</font></h2><p><center><br><img src="http://img.blog.csdn.net/20160707181044504" alt="这里写图片描述"><br></center></p>
+<h3 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a><font color="#C4573C" size="4" face="黑体">需求背景</font></h3></li>
+<li><p>登录、登出成功之后，涉及的相关页面要即时刷新登录数据，做出相应的调整</p>
+</li>
+<li>多个页面涉及比赛预约的状态，一个页面预约或者取消预约成功，要即时更新其它页面的比赛预约状态</li>
+</ul>
+</blockquote>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a><font color="#C4573C" size="4" face="黑体">步骤</font></h3><p><strong>部分概念相关的可以参考下面的相关介绍穿插理解</strong></p>
+<p><strong>1、首先需要定义消息类，该类可以不继承任何基类也不需要实现任何接口</strong></p>
+<p>这里以LoginEvent（用户登录退出场景） 和AppointmentStateEvent （见注释）为例来介绍<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OnEventBusInterface</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnLoginListener</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onEventMainThread</span><span class="params">(LoginEvent event)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnTopicRefreshListener</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onEventMainThread</span><span class="params">(FollowTopicRefreshEvent event)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnAppointmentStateListener</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onEventMainThread</span><span class="params">(AppointmentStateEvent event)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginEvent</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> hasLoginSucc;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">LoginEvent</span><span class="params">(<span class="keyword">boolean</span> loginSucc)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.hasLoginSucc = loginSucc;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasLoginSucc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> hasLoginSucc;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHasLoginSucc</span><span class="params">(<span class="keyword">boolean</span> hasLoginSucc)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.hasLoginSucc = hasLoginSucc;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//FollowFragment刷新事件</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">FollowTopicRefreshEvent</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 在比赛详情页</span><br><span class="line">     * 比赛未开始</span><br><span class="line">     * 从首页直播tab进入或者从球队详情页的比赛tab进入</span><br><span class="line">     * 在比赛未开始时，可以预约或者取消预约比赛，这个操作完成后再返回上面两个入口时，需要刷新预约状态</span><br><span class="line">     * 这里传入了matchId作为参数,目前没有用到，因为现在比赛的预约与否是存在本地数据库的</span><br><span class="line">     * 如果以后预约比赛的状态和用户绑定在服务器，那么可能就需要使用这个matchId了</span><br><span class="line">     * &lt;p/&gt;</span><br><span class="line">     * 需要3个有关注状态的地方  互相通知最新的关注状态</span><br><span class="line">     * add By SuS</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">AppointmentStateEvent</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String matchId;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">AppointmentStateEvent</span><span class="params">(String matchId)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.matchId = matchId;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getMatchId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> matchId;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMatchId</span><span class="params">(String matchId)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.matchId = matchId;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2、在需要订阅事件的地方注册事件，在需要取消消息订阅的地方取消消息订阅</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseLoginActivity</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> <span class="keyword">implements</span> <span class="title">OnEventBusInterface</span>.<span class="title">OnLoginListener</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        EventBus.getDefault().register(<span class="keyword">this</span>);<span class="comment">//注册EventBus</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        EventBus.getDefault().unregister(<span class="keyword">this</span>);<span class="comment">//反注册EventBus</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLoginSuccess</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLoginOut</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEventMainThread</span><span class="params">(OnEventBusInterface.LoginEvent event)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(event.hasLoginSucc())&#123;</span><br><span class="line">            onLoginSuccess();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            onLoginOut();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseLoginFragment</span> <span class="keyword">extends</span> <span class="title">BaseFragment</span> <span class="keyword">implements</span> <span class="title">IHandlerMessage</span>,<span class="title">OnEventBusInterface</span>.<span class="title">OnLoginListener</span>,<span class="title">OnEventBusInterface</span>.<span class="title">OnTopicRefreshListener</span>,<span class="title">OnEventBusInterface</span>.<span class="title">OnAppointmentStateListener</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> Handler handler;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onViewCreated</span><span class="params">(View view, Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onViewCreated(view, savedInstanceState);</span><br><span class="line">        handler = <span class="keyword">new</span> CommonHandler&lt;BaseLoginFragment&gt;(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        EventBus.getDefault().register(<span class="keyword">this</span>);<span class="comment">//注册EventBus</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy();</span><br><span class="line">        EventBus.getDefault().unregister(<span class="keyword">this</span>);<span class="comment">//反注册EventBus</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handlerCallback</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">showLoginWindow</span><span class="params">()</span></span>&#123;</span><br><span class="line">        StormUtils2.startLoginActivity(getActivity());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLoginSuccess</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLoginOut</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onFollowStatusChanged</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onAppointmentStateChanged</span><span class="params">(String matchId)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEventMainThread</span><span class="params">(OnEventBusInterface.LoginEvent event)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(event.hasLoginSucc())&#123;</span><br><span class="line">            onLoginSuccess();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            onLoginOut();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEventMainThread</span><span class="params">(OnEventBusInterface.FollowTopicRefreshEvent event)</span></span>&#123;</span><br><span class="line">        onFollowStatusChanged();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEventMainThread</span><span class="params">(OnEventBusInterface.AppointmentStateEvent event)</span> </span>&#123;</span><br><span class="line">        onAppointmentStateChanged(event.getMatchId());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>3、分发事件，即触发消息</strong></p>
+<p><img src="http://img.blog.csdn.net/20160707160724357" alt="这里写图片描述"></p>
+<p>这里对BaseActivity小做解释：当通过插件化的方式加载暴风体育的时候，启动登录，通过startActivityForResult的方式调用主版的登录（之所以调用主版的登录是因为主应用和以插件化方式加载的暴风体育第三方登录（QQ，微信）的签名不同），当登录成功获取用户信息后，分发用户登录成功的消息</p>
+<p>代码很简洁，具体相关操作如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> OnEventBusInterface.LoginEvent(<span class="keyword">true</span>));<span class="comment">//登录成功</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> OnEventBusInterface.LoginEvent(<span class="keyword">false</span>));<span class="comment">//登出成功</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().post(<span class="keyword">new</span> OnEventBusInterface.AppointmentStateEvent(String.valueOf(matchInfo.getId())));<span class="comment">//比赛预约状态改变成功</span></span><br></pre></td></tr></table></figure>
+<p><strong>4、消息处理</strong></p>
+<p>这里使用了最普通的方式，没有使用EventBus的注解模式，而且考虑到收到消息后的处理都是在主线程中完成，所以采用了onEventMainThread方法。</p>
+<p>继承了BaseLoginActivity的Activity的相关处理：<br><img src="http://img.blog.csdn.net/20160707160737444" alt="这里写图片描述"></p>
+<p>继承了BaseLoginFragment的Fragment的相关处理：<br><img src="http://img.blog.csdn.net/20160707160752467" alt="这里写图片描述"></p>
+<p><strong>注意</strong>：</p>
+<blockquote>
+<ul>
+<li>在3.0之前，EventBus还没有使用注解方式。消息处理的方法也只能限定于onEvent、onEventMainThread、onEventBackgroundThread和onEventAsync，分别代表四种线程模型。而在3.0之后，消息处理的方法可以随便取名，但是需要添加一个注解@Subscribe，并且要指定线程模型（默认为PostThread）</li>
+<li>事件处理函数的访问权限必须为public，否则会报异常</li>
+</ul>
+</blockquote>
+<p><strong>相关代码如下：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEventMainThread</span><span class="params">(OnEventBusInterface.LoginEvent event)</span></span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(event.hasLoginSucc())&#123;</span><br><span class="line">         onLoginSuccess();</span><br><span class="line">     &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">         onLoginOut();</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEventMainThread</span><span class="params">(OnEventBusInterface.FollowTopicRefreshEvent event)</span></span>&#123;</span><br><span class="line">     onFollowStatusChanged();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEventMainThread</span><span class="params">(OnEventBusInterface.AppointmentStateEvent event)</span> </span>&#123;</span><br><span class="line">     onAppointmentStateChanged(event.getMatchId());</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<center><br><img src="http://img.blog.csdn.net/20160707182411945" alt="这里写图片描述"><br></center><br>## <font color="#C4573C" size="5" face="黑体">相关介绍</font><br><br>### <font color="#C4573C" size="4" face="黑体">线程模型</font><br><br>主要包括如下四种：<br><img src="http://img.blog.csdn.net/20160707165447744" alt="这里写图片描述"><br><br><strong>POSTING</strong>：<br>&gt; <em> 发布事件和接收事件在同一个线程<br>&gt; </em> 避免执行耗时操作，否则会阻塞事件的传递，有可能会引起ANR<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Subscribe</span>(threadMode = ThreadMode.POSTING) <span class="comment">// ThreadMode is optional here</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">    log(event.message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br><strong>MAIN</strong>：<br>&gt; <em> 无论事件从哪里发布，接收事件都在UI线程<br>&gt; </em> 可以用来更新UI，但是不能处理耗时操作<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Called in Android UI's main thread</span></span><br><span class="line"><span class="meta">@Subscribe</span>(threadMode = ThreadMode.MAIN)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">    textField.setText(event.message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br><strong>BACKGROUND</strong>:<br>&gt; <em> 发布事件来自主线程，接收事件则在新的线程中运行；发布事件来自子线 程，接收事件也在该子线程完成<br>&gt; </em> 禁止进行UI更新操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Called in the background thread</span></span><br><span class="line"><span class="meta">@Subscribe</span>(threadMode = ThreadMode.BACKGROUND)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(MessageEvent event)</span></span>&#123;</span><br><span class="line">    saveToDisk(event.message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br><strong>ASYNC</strong>：<br>&gt; <em> 无论事件从哪里发布，接收事件都在新的子线程<br>&gt; </em> 禁止进行UI更新操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Called in a separate thread</span></span><br><span class="line"><span class="meta">@Subscribe</span>(threadMode = ThreadMode.ASYNC)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(MessageEvent event)</span></span>&#123;</span><br><span class="line">    backend.send(event.message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>### <font color="#C4573C" size="4" face="黑体">订阅优先级以及事件取消</font><br><br>尽管大多数情况下eventbus是不需要设置订阅的优先级和事件取消，但是某些特殊的场景可能派上用场。例如，当应用程序在前台，存在一个事件可能会触发一些用户界面相关逻辑，但当应用不可见时应该有不同的反应<br><br><strong>优先级设置</strong>:<br>&gt; <em> 默认优先级是0，同样的线程分发模式，优先级更高的订阅者会先收到消息<br>&gt; </em> 不同线程模式的订阅者接收消息的顺序呢不受优先级影响<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Subscribe</span>(priority = <span class="number">1</span>);</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</span><br><span class="line">…</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br><strong>事件取消</strong>：<br>&gt; <em> 事件取消一般都是被高优先级的订阅者调用<br>&gt; </em> 严格限制在线程模式为POSTING的消息处理方法中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Called in the same thread (default)</span></span><br><span class="line"><span class="meta">@Subscribe</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEvent</span><span class="params">(MessageEvent event)</span></span>&#123;</span><br><span class="line"><span class="comment">// Process the event</span></span><br><span class="line">…</span><br><span class="line"></span><br><span class="line">EventBus.getDefault().cancelEventDelivery(event) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>### <font color="#C4573C" size="4" face="黑体">粘性事件</font><br>EventBus还支持发送黏性事件，就是在发送事件之后再订阅该事件也能收到该事件，能够收到订阅之前发送的消息。但是它只能收到最新的一次消息。<br><br>这里不做过多介绍，详情请参考<a href="http://greenrobot.org/eventbus/documentation/configuration/sticky-events/" target="_blank" rel="external">Sticky Events</a><br><br>## <font color="#C4573C" size="5" face="黑体">总结</font><br><br>&gt;<em> 简单强大<br>&gt;</em> 实战验证<br>&gt;<em> 高性能<br>&gt;</em> 基于API的简洁注解<br>&gt;<em> 主线程和子线程均可进行消息发布和订阅<br>&gt;</em> 事件以及订阅者继承特点<br>&gt;* 零配置且可配<br><br>码字！排版！画图！终于写完了！<br><center><br><img src="http://img.blog.csdn.net/20160707180337042" alt="这里写图片描述"><br></center>
+
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat_qr.jpg" alt="SuS WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>微信打赏</p>
+      </div>
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay_qr.jpg" alt="SuS Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/EventBus/" rel="tag">#EventBus</a>
+          
+            <a href="/tags/事件总线库/" rel="tag">#事件总线库</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/27/Android自定义View之如期相遇的百分比进度条RatioProgress/" rel="next" title="Android自定义View之如期相遇的百分比进度条RatioProgress">
+                <i class="fa fa-chevron-left"></i> Android自定义View之如期相遇的百分比进度条RatioProgress
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/07/EventBus 更少的代码 更好的体验/"
+           data-title="EventBus 更少的代码 更好的体验" data-url="http://yoursite.com/2016/07/07/EventBus 更少的代码 更好的体验/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="SuS" />
+          <p class="site-author-name" itemprop="name">SuS</p>
+          <p class="site-description motion-element" itemprop="description">手掌一散，流落走多少时光</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulrelay" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/s003603u" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">Links</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://pentiumrabbit.github.io/" target="_blank">赵儒阳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://sunhuaxiao.com" target="_blank">孙华枭</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目实战"><span class="nav-number">3.</span> <span class="nav-text">项目实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求背景"><span class="nav-number">3.1.</span> <span class="nav-text">需求背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">3.2.</span> <span class="nav-text">步骤</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SuS</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulrelay"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
