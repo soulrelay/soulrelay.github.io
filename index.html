@@ -258,6 +258,156 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/30/基于ToolBar等MD相关控件实现的沉浸式联动效果/" itemprop="url">
+                  基于ToolBar等MD相关控件实现的沉浸式联动效果
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-30T13:50:00+08:00" content="2016-09-30">
+              2016-09-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/30/基于ToolBar等MD相关控件实现的沉浸式联动效果/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/30/基于ToolBar等MD相关控件实现的沉浸式联动效果/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font color="#C4573C" size="5" face="黑体">前言</font></h2><center><br><img src="http://img.blog.csdn.net/20160930134134324" alt="Drawing" width="250px"><br></center>
+
+<p>提前下班了！！！</p>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a><font color="#C4573C" size="5" face="黑体">综述</font></h2><p>先来看一下最终的效果图</p>
+<p><center><br><img src="http://img.blog.csdn.net/20160930112259772" alt="这里写图片描述"><br></center></p>
+<h3 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a><font color="#C4573C" size="4" face="黑体">功能点</font></h3><font color="#d91717" size="3" face="黑体">1、CoordinatorLayout、AppBarLayout、CollapsingToolbarLayout、Toolbar、TabLayout、ViewPager联动使用</font>
+
+<font color="#d91717" size="3" face="黑体">2、联动过程中保持沉浸式状态栏效果</font>
+
+<font color="#d91717" size="3" face="黑体">3、ToolBar的基本使用，如自定义居中的title， Toolbar和Menu的结合使用，自定义溢出菜单样式</font><br>期间会涉及控件各种属性的设置，这个比较细碎<br><br>中间遇到一个问题，就是给menu，navigation等设置图片时，图片被拉伸（原因：把基于1280*720的切图放在了drawable文件夹下了，应该放在drawable-xhdpi）<br><br><font color="#d91717" size="3" face="黑体">4、解决应用启动白屏的问题</font>
+
+<h2 id="各个突破"><a href="#各个突破" class="headerlink" title="各个突破"></a><font color="#C4573C" size="5" face="黑体">各个突破</font></h2><h3 id="设置ToolBar"><a href="#设置ToolBar" class="headerlink" title="设置ToolBar"></a><font color="#C4573C" size="4" face="黑体">设置ToolBar</font></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">private void setupToolbar() &#123;</span><br><span class="line">      toolbar = (Toolbar) findViewById(R.id.toolbar);</span><br><span class="line"></span><br><span class="line">      if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) &#123;</span><br><span class="line">          int statusBarHeight = getStatusBarHeight(this);</span><br><span class="line">          FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) toolbar.getLayoutParams();</span><br><span class="line">          layoutParams.topMargin = statusBarHeight;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      appbar = (AppBarLayout) findViewById(R.id.appbar);</span><br><span class="line"></span><br><span class="line">      setSupportActionBar(toolbar);</span><br><span class="line">      getSupportActionBar().setDisplayHomeAsUpEnabled(true); //使用系统自带的返回按钮</span><br><span class="line">      getSupportActionBar().setHomeAsUpIndicator(R.drawable.icon_back_normal);//替换系统自带的返回图标</span><br><span class="line"></span><br><span class="line">      toolbar.setOnMenuItemClickListener(onMenuItemClick);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public boolean onMenuItemClick(MenuItem menuItem) &#123;</span><br><span class="line">          switch (menuItem.getItemId()) &#123;</span><br><span class="line">              case R.id.action_share:</span><br><span class="line">                  Toast.makeText(MainActivity.this, &quot;收藏&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">                  //其余的省略</span><br><span class="line">                  break;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          return true;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  private void setupCollapsingToolbar() &#123;</span><br><span class="line">      collapseToolbar = (CollapsingToolbarLayout) findViewById(</span><br><span class="line">              R.id.collapse_toolbar);</span><br><span class="line"></span><br><span class="line">      collapseToolbar.setTitleEnabled(false);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="OnOffsetChangedListener联动显示"><a href="#OnOffsetChangedListener联动显示" class="headerlink" title="OnOffsetChangedListener联动显示"></a><font color="#C4573C" size="4" face="黑体">OnOffsetChangedListener联动显示</font></h3><p>实现AppBarLayout的OnOffsetChangedListener</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">   @Override</span><br><span class="line">    protected void onResume() &#123;</span><br><span class="line">        super.onResume();</span><br><span class="line">        appbar.addOnOffsetChangedListener(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onPause() &#123;</span><br><span class="line">        super.onPause();</span><br><span class="line">        appbar.removeOnOffsetChangedListener(this);</span><br><span class="line">    &#125;</span><br><span class="line">@Override</span><br><span class="line">    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) &#123;</span><br><span class="line">        if (lastPosition == verticalOffset) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        lastPosition = verticalOffset;</span><br><span class="line">        if (verticalOffset == 0) &#123;</span><br><span class="line">            getSupportActionBar().setTitle(&quot;&quot;);</span><br><span class="line">            btnRight.setVisibility(View.GONE);</span><br><span class="line">            viewTitle.setPadding(0, 6, 0, 0);</span><br><span class="line">            toolbarTitle.setText(&quot;&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125; else if (verticalOffset &lt; -dip2px(this, 110)) &#123;</span><br><span class="line">            viewTitle.setPadding(0, 0, 0, 0);</span><br><span class="line">            getSupportActionBar().setTitle(&quot;&quot;);</span><br><span class="line">            btnRight.setVisibility(View.GONE);</span><br><span class="line">            toolbarTitle.setText(&quot;&quot;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            viewTitle.setPadding(0, 6, 0, 0);</span><br><span class="line">            getSupportActionBar().setTitle(&quot;&quot;);</span><br><span class="line">            toolbarTitle.setText(&quot;军团再临&quot;);</span><br><span class="line">            btnRight.setVisibility(View.VISIBLE);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="自定义溢出菜单样式"><a href="#自定义溢出菜单样式" class="headerlink" title="自定义溢出菜单样式"></a><font color="#C4573C" size="4" face="黑体">自定义溢出菜单样式</font></h3><p>定义样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--溢出菜单样式 --&gt;</span><br><span class="line">  &lt;style name=&quot;OverflowMenuStyle&quot; parent=&quot;@style/Widget.AppCompat.Light.PopupMenu.Overflow&quot;&gt;</span><br><span class="line">      &lt;item name=&quot;overlapAnchor&quot;&gt;false&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;android:dropDownWidth&quot;&gt;wrap_content&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;android:paddingRight&quot;&gt;5dp&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;android:popupBackground&quot;&gt;@color/dcdcdc&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;android:dropDownVerticalOffset&quot;&gt;4dip&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;android:dropDownHorizontalOffset&quot;&gt;-4dip&lt;/item&gt;</span><br><span class="line">  &lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>添加到application theme中（前两个属性是为了解决启动白屏的问题）</p>
+<p><a href="http://www.cnblogs.com/netcorner/p/4883069.html" target="_blank" rel="external">Android 启动白屏或者黑屏闪现解决</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style name=&quot;Theme.AppStartLoadTranslucent&quot; parent=&quot;AppTheme&quot;&gt;</span><br><span class="line">      &lt;item name=&quot;android:windowIsTranslucent&quot;&gt;true&lt;/item&gt;</span><br><span class="line">      &lt;item name=&quot;android:windowNoTitle&quot;&gt;true&lt;/item&gt;</span><br><span class="line">      &lt;!--&lt;item name=&quot;actionOverflowMenuStyle&quot;&gt;@style/OverflowMenuStyle&lt;/item&gt;--&gt;</span><br><span class="line">  &lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>AndroidManifest.xml<br>设置theme为Theme.AppStartLoadTranslucent<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    package=&quot;com.soulrelay.coordinatorlayoutdemo&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- To access Google+ APIs: --&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;application</span><br><span class="line">        android:allowBackup=&quot;true&quot;</span><br><span class="line">        android:icon=&quot;@mipmap/ic_launcher&quot;</span><br><span class="line">        android:label=&quot;@string/app_name&quot;</span><br><span class="line">        android:supportsRtl=&quot;true&quot;</span><br><span class="line">        android:theme=&quot;@style/Theme.AppStartLoadTranslucent&quot;&gt;</span><br><span class="line">        &lt;activity android:name=&quot;.MainActivity&quot;&gt;</span><br><span class="line">            &lt;intent-filter&gt;</span><br><span class="line">                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;</span><br><span class="line"></span><br><span class="line">                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;</span><br><span class="line">            &lt;/intent-filter&gt;</span><br><span class="line">        &lt;/activity&gt;</span><br><span class="line">    &lt;/application&gt;</span><br><span class="line"></span><br><span class="line">&lt;/manifest&gt;</span><br></pre></td></tr></table></figure></p>
+<p>其实，之前实现类似菜单功能采用popupwindow居多</p>
+<h3 id="Toolbar中Menu中图标不显示的问题"><a href="#Toolbar中Menu中图标不显示的问题" class="headerlink" title="Toolbar中Menu中图标不显示的问题"></a><font color="#C4573C" size="4" face="黑体">Toolbar中Menu中图标不显示的问题</font></h3><p>在menu中，图标不会显示。<br>有的人是采用 onMenuOpened() 来写，可是仍然会有问题，对于AppCompactActivity你可以把onPrepareOptionsPanel（View v，Menu menu）代替 onMenuOpened() 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    protected boolean onPrepareOptionsPanel(View view, Menu menu) &#123;</span><br><span class="line">        if (menu != null) &#123;</span><br><span class="line">            if (menu.getClass() == MenuBuilder.class) &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    Method m = menu.getClass().getDeclaredMethod(&quot;setOptionalIconsVisible&quot;, Boolean.TYPE);</span><br><span class="line">                    m.setAccessible(true);</span><br><span class="line">                    m.invoke(menu, true);</span><br><span class="line">                &#125; catch (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return super.onPrepareOptionsPanel(view, menu);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="toolbar-menu中app-showAsAction各个属性值作用"><a href="#toolbar-menu中app-showAsAction各个属性值作用" class="headerlink" title=" toolbar menu中app:showAsAction各个属性值作用"></a><font color="#C4573C" size="4" face="黑体"> toolbar menu中app:showAsAction各个属性值作用</font></h3><p>android:showAsAction。这个属性可接受的值有： </p>
+<blockquote>
+<ul>
+<li>always：使菜单项一直显示在ToolBar上。 </li>
+<li>ifRoom：如果有足够的空间，这个值会使菜单项显示在ToolBar上。 </li>
+<li>never：使菜单项永远都不出现在ToolBar上,在…的子项中显示。 </li>
+<li>withText：使菜单项和它的图标，菜单文本一起显示。<h2 id="源码下载"><a href="#源码下载" class="headerlink" title="源码下载"></a><font color="#C4573C" size="5" face="黑体">源码下载</font></h2><a href="http://download.csdn.net/detail/s003603u/9643815" target="_blank" rel="external">联盟-暗影之月-传送门</a><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><font color="#C4573C" size="5" face="黑体">参考链接</font></h2><a href="http://blog.csdn.net/zhangphil/article/details/48680055" target="_blank" rel="external">Android布局属性android:clipToPadding的UI设计妙用</a><br><a href="http://www.jianshu.com/p/79604c3ddcae" target="_blank" rel="external">Android开发：最详细的 Toolbar 开发实践总结</a><br><a href="http://www.daxueit.com/article/9354.html" target="_blank" rel="external">fitsSystemWindows</a></li>
+</ul>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/26/列表全家桶之刷新、加载更多、悬浮、左滑删除/" itemprop="url">
                   列表全家桶之刷新、加载更多、悬浮、左滑删除
                 </a>
@@ -1629,157 +1779,13 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/29/RxLoginAndRegister/" itemprop="url">
-                  RxLoginAndRegister
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-29T19:47:00+08:00" content="2016-03-29">
-              2016-03-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/29/RxLoginAndRegister/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/RxLoginAndRegister/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="RxLoginAndRegister"><a href="#RxLoginAndRegister" class="headerlink" title="RxLoginAndRegister"></a>RxLoginAndRegister</h1><p>主要包含客户端和服务端两个部分：</p>
-<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>使用RxJava和Retrofit搭配完成基本的登录和注册功能</p>
-<blockquote>
-<ul>
-<li>RxJava：一个在 Java VM 上使用可观测的序列来组成异步的、基于事件的程序的库（说到根上，它就是一个实现异步操作的库）</li>
-<li>Retrofit: 类型安全的网络库，封装了okhttp</li>
-</ul>
-</blockquote>
-<h3 id="登录api"><a href="#登录api" class="headerlink" title="登录api"></a>登录api</h3><p>一个带有两个参数的post请求<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">LoginApi</span> </span>&#123;</span><br><span class="line">    <span class="meta">@FormUrlEncoded</span></span><br><span class="line">    <span class="meta">@POST</span>(<span class="string">"/LoginServer/login.php"</span>)</span><br><span class="line">    <span class="function">Observable&lt;ResultReturn&gt; <span class="title">login</span><span class="params">(@Field(<span class="string">"email"</span>)</span> String email, @<span class="title">Field</span><span class="params">(<span class="string">"password"</span>)</span> String password)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注意：具体使用方法请参考详细代码 ，其它相关概念不再赘述。</p>
-<p><img src="https://raw.githubusercontent.com/feifei003603/RxLoginAndRegister/master/app/src/main/res/raw/login.jpg" alt="image"></p>
-<p><img src="https://github.com/feifei003603/RxLoginAndRegister/blob/master/app/src/main/res/raw/register.jpg?raw=true" alt="image"></p>
-<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><p>初衷：就是想自己搭建一个最最基本的服务器！</p>
-<p>功能：完成了一个最基本的登录和注册流程</p>
-<p>注意：代码结构相对简单！仅供需要的朋友进行参考</p>
-<p>部分代码参考github上的一个demo，一时间找不到那个demo的链接了，同时根据本案例自身需求做了一些调整</p>
-<p>相关介绍：</p>
-<blockquote>
-<ul>
-<li>集成安装环境：WampServer 即在window下的apache、php和mysql的服务器软件</li>
-<li>集成开发环境：Zend Studio12.5.1</li>
-<li>数据传输类型：JSON<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"success"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"msg"</span>: <span class="string">"Login success"</span>,</span><br><span class="line">    <span class="attr">"result"</span>: &#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"ss"</span>,</span><br><span class="line">        <span class="attr">"email"</span>: <span class="string">"123@qq.com"</span>,</span><br><span class="line">        <span class="attr">"contact"</span>: <span class="string">"123"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<h3 id="修改数据库配置文件"><a href="#修改数据库配置文件" class="headerlink" title="修改数据库配置文件"></a>修改数据库配置文件</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * All database connection variables</span><br><span class="line"> */</span></span><br><span class="line"> </span><br><span class="line">define(<span class="string">"DB_HOST"</span>, <span class="string">"localhost"</span>);</span><br><span class="line">define(<span class="string">"DB_USER"</span>, <span class="string">"root"</span>);</span><br><span class="line">define(<span class="string">"DB_PASSWORD"</span>, <span class="string">""</span>);</span><br><span class="line">define(<span class="string">"DB_NAME"</span>, <span class="string">"simplelogin"</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="数据库的连接-数据表的创建-相关数据操作api"><a href="#数据库的连接-数据表的创建-相关数据操作api" class="headerlink" title="数据库的连接 数据表的创建 相关数据操作api"></a>数据库的连接 数据表的创建 相关数据操作api</h3><p>参考db_apis.php</p>
-<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><p>参考login.php</p>
-<h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><p>参考register.php</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1818,7 +1824,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1835,7 +1841,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
