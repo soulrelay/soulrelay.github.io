@@ -1,90 +1,18 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="手掌一散，流落走多少时光">
+  <title>Tag: Android Architecture | SuS&#39;s Blog</title>
+  <meta name="description" content="手掌一散，流落走多少时光" />
+  <meta name="keywords" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="/">
+  <link rel="alternate" href="/atom.xml" title="SuS's Blog">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="手掌一散，流落走多少时光">
 <meta property="og:type" content="website">
 <meta property="og:title" content="SuS&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/tags/Android-Architecture/index.html">
@@ -94,477 +22,373 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SuS&#39;s Blog">
 <meta name="twitter:description" content="手掌一散，流落走多少时光">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
+    
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link href='//cdn.bootcss.com/node-waves/0.7.5/waves.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
     }
-  };
-</script>
-
-
-
-
-  <link rel="canonical" href="http://yoursite.com/tags/Android-Architecture/"/>
-
-  <title> 标签: Android Architecture | SuS's Blog </title>
+  </script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left  ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">SuS's Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">Much to Live For</p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Android Architecture
-        <small>标签</small>
-      </h2>
-    </div>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/27/Android-architecture之MVC、MVP、MVVM、Data-Binding/" itemprop="url">
-              
-                <span itemprop="name">Android-architecture之MVC、MVP、MVVM、Data-Binding</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-27T10:29:00+08:00"
-              content="2016-05-27" >
-          05-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/27/Android Architecture（Is Activity God？）/" itemprop="url">
-              
-                <span itemprop="name">Android Architecture（Is Activity God？）</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-27T10:12:00+08:00"
-              content="2016-05-27" >
-          05-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
-
-  
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.png"
-               alt="SuS" />
-          <p class="site-author-name" itemprop="name">SuS</p>
-          <p class="site-description motion-element" itemprop="description">手掌一散，流落走多少时光</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">12</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/soulrelay" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://blog.csdn.net/s003603u" target="_blank" title="CSDN">
-                  
-                    <i class="fa fa-fw fa-csdn"></i>
-                  
-                  CSDN
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">SuS</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-        
-
-<div class="busuanzi-count">
-
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
-  
-
-  
-    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
-  
-  
+<body>
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
 </div>
 
 
+  <script>setLoadingBarProgress(20)</script> 
+  <header class="l_header">
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href='/' >
+				SuS's Blog
+			</a>
+			<div class='menu'>
+				<ul class='h-list'>
+					
+						<li>
+							<a class='flat-box nav-home' href='/'>
+								Home
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-archives' href='/archives'>
+								Archives
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-gallery' href='https://photos.google.com/album/AF1QipNoqKYgspQo5O1YhlFXGCQ7p575KBH3Yxf8WHL4?hl=zh-CN'>
+								Gallery
+							</a>
+						</li>
+					
+						<li>
+							<a class='flat-box nav-about' href='/about'>
+								About
+							</a>
+						</li>
+					
+				</ul>
+				<div class='underline'></div>
+			</div>
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search" />
+						<span class="icon icon-search"></span>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a href='javascript:void(0)'><span class="icon icon-search flat-box"></span></a></li>
+				
+				<li class='s-menu'><a href='javascript:void(0)'><span class="icon icon-menu flat-box"></span></a></li>
+			</ul>
+		</div>
+		
+		<div class='nav-sub container container--flex'>
+			<a class="logo" class="flat-box" href='javascript:void(0)'>
+				Word of Forks
+			</a>
 
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a href='javascript:void(0)'><span class="icon icon-chat_bubble_outline flat-box"></span></a></li>
+				<li class='s-top'><a href='javascript:void(0)'><span class="icon icon-arrow_upward flat-box"></span></a></li>
+				<li class='s-toc'><a href='javascript:void(0)'><span class="icon icon-format_list_numbered flat-box"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<aside class="menu-phone">
+	<nav>
+		
+			<a href="/" class="nav-home nav">
+				Home
+			</a>
+		
+			<a href="/archives" class="nav-archives nav">
+				Archives
+			</a>
+		
+			<a href="https://photos.google.com/album/AF1QipNoqKYgspQo5O1YhlFXGCQ7p575KBH3Yxf8WHL4?hl=zh-CN" class="nav-gallery nav">
+				Gallery
+			</a>
+		
+			<a href="/about" class="nav-about nav">
+				About
+			</a>
+		
+	</nav>
+</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+  <div class="l_body">
+    <div class='container clearfix'>
+      <div class='l_main'>
         
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"soulrelay"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
+  <script>
+    window.subData= { title:'Tag : Android Architecture'}
   </script>
 
-  
+<section class="post-list">
+	
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
     
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+    <h2 class="title">
+      <a href="/2016/05/27/Android-architecture之MVC、MVP、MVVM、Data-Binding/">
+        Android-architecture之MVC、MVP、MVVM、Data-Binding
+      </a>
+    </h2>
+    
+    <time>
+      May 27, 2016
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/Android/">Android</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <p>[TOC]</p>
+<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a><font color="#C4573C" size="5" face="黑体">传送门</font></h1><p><a href="http://blog.csdn.net/s003603u/article/details/51485709" target="_blank" rel="external">Android Architecture（Is Activity God？）</a></p>
+<h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a><font color="#C4573C" size="5" face="黑体">MVC</font></h1><h2 id="结构简介"><a href="#结构简介" class="headerlink" title="结构简介"></a><font color="#C4573C" size="4" face="黑体">结构简介</font></h2><p><img src="http://img.blog.csdn.net/20160516105225460" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20160516155514982" alt="这里写图片描述"></p>
+<h2 id="实例分析"><a href="#实例分析" class="headerlink" title="实例分析"></a><font color="#C4573C" size="4" face="黑体">实例分析</font></h2><p><img src="http://img.blog.csdn.net/20160516161401197" alt="这里写图片描述"></p>
+<font color="#C4573C" size="3" face="黑体">Controller控制器式</font>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">ActionBarActivity</span> <span class="keyword">implements</span> <span class="title">OnWeatherListener</span>, <span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> WeatherModel weatherModel;</div><div class="line">    <span class="keyword">private</span> Dialog loadingDialog;</div><div class="line">    <span class="keyword">private</span> EditText cityNOInput;</div><div class="line">    <span class="keyword">private</span> TextView city;</div><div class="line">    <span class="keyword">private</span> TextView cityNO;</div><div class="line">    <span class="keyword">private</span> TextView temp;</div><div class="line">    <span class="keyword">private</span> TextView wd;</div><div class="line">    <span class="keyword">private</span> TextView ws;</div><div class="line">    <span class="keyword">private</span> TextView sd;</div><div class="line">    <span class="keyword">private</span> TextView wse;</div><div class="line">    <span class="keyword">private</span> TextView time;</div><div class="line">    <span class="keyword">private</span> TextView njd;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        weatherModel = <span class="keyword">new</span> WeatherModelImpl();</div><div class="line">        initView();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 初始化View</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initView</span><span class="params">()</span> </span>&#123;</div><div class="line">        cityNOInput = findView(R.id.et_city_no);</div><div class="line">        city = findView(R.id.tv_city);</div><div class="line">        cityNO = findView(R.id.tv_city_no);</div><div class="line">        temp = findView(R.id.tv_temp);</div><div class="line">        wd = findView(R.id.tv_WD);</div><div class="line">        ws = findView(R.id.tv_WS);</div><div class="line">        sd = findView(R.id.tv_SD);</div><div class="line">        wse = findView(R.id.tv_WSE);</div><div class="line">        time = findView(R.id.tv_time);</div><div class="line">        njd = findView(R.id.tv_njd);</div><div class="line">        findView(R.id.btn_go).setOnClickListener(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">        loadingDialog = <span class="keyword">new</span> ProgressDialog(<span class="keyword">this</span>);</div><div class="line">        loadingDialog.setTitle(加载天气中...);</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 显示结果</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> weather</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">displayResult</span><span class="params">(Weather weather)</span> </span>&#123;</div><div class="line">        WeatherInfo weatherInfo = weather.getWeatherinfo();</div><div class="line">        city.setText(weatherInfo.getCity());</div><div class="line">        cityNO.setText(weatherInfo.getCityid());</div><div class="line">        temp.setText(weatherInfo.getTemp());</div><div class="line">        wd.setText(weatherInfo.getWD());</div><div class="line">        ws.setText(weatherInfo.getWS());</div><div class="line">        sd.setText(weatherInfo.getSD());</div><div class="line">        wse.setText(weatherInfo.getWSE());</div><div class="line">        time.setText(weatherInfo.getTime());</div><div class="line">        njd.setText(weatherInfo.getNjd());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 隐藏进度对话框</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hideLoadingDialog</span><span class="params">()</span> </span>&#123;</div><div class="line">        loadingDialog.dismiss();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (v.getId()) &#123;</div><div class="line">            <span class="keyword">case</span> R.id.btn_go:</div><div class="line">                loadingDialog.show();</div><div class="line">                weatherModel.getWeather(cityNOInput.getText().toString().trim(), <span class="keyword">this</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(Weather weather)</span> </span>&#123;</div><div class="line">        hideLoadingDialog();</div><div class="line">        displayResult(weather);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">()</span> </span>&#123;</div><div class="line">        hideLoadingDialog();</div><div class="line">        Toast.makeText(<span class="keyword">this</span>, 获取天气信息失败, Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span>  T <span class="title">findView</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (T) findViewById(id);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<font color="#C4573C" size="3" face="黑体">Model模型</font><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WeatherModel</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getWeather</span><span class="params">(String cityNumber, OnWeatherListener listener)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WeatherModelImpl</span> <span class="keyword">implements</span> <span class="title">WeatherModel</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getWeather</span><span class="params">(String cityNumber, <span class="keyword">final</span> OnWeatherListener listener)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">/*数据层操作*/</span></div><div class="line">        VolleyRequest.newInstance().newGsonRequest(http:<span class="comment">//www.weather.com.cn/data/sk/ + cityNumber + .html,</span></div><div class="line">                Weather.class, <span class="keyword">new</span> Response.Listener() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Weather weather)</span> </span>&#123;</div><div class="line">                        <span class="keyword">if</span> (weather != <span class="keyword">null</span>) &#123;</div><div class="line">                            listener.onSuccess(weather);</div><div class="line">                        &#125; <span class="keyword">else</span> &#123;</div><div class="line">                            listener.onError();</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;, <span class="keyword">new</span> Response.ErrorListener() &#123;</div><div class="line">                    <span class="meta">@Override</span></div><div class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onErrorResponse</span><span class="params">(VolleyError error)</span> </span>&#123;</div><div class="line">                        listener.onError();</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure><br><br>## <font color="#C4573C" size="4" face="黑体">总结</font><br>&gt;<em> 扩展性好、维护性、模块职责明确<br>&gt;</em> 耦合性低（解耦）、V和M非真正意义上的分离<br><br><font color="#C4573C" size="3" face="黑体">什么时候适合使用MVC设计模式？</font>
+
+<p>当一个小的项目且无需频繁修改需求就不用MVC框架来设计了，那样反而觉得代码过度设计，代码臃肿。一般在大的项目中，且业务逻辑处理复杂，页面显示比较多，需要模块化设计的项目使用MVC就有足够的优势了。</p>
+<h1 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a><font color="#C4573C" size="5" face="黑体">MVP</font></h1><h2 id="结构简介-1"><a href="#结构简介-1" class="headerlink" title="结构简介"></a><font color="#C4573C" size="4" face="黑体">结构简介</font></h2><p><img src="http://img.blog.csdn.net/20160513112553811" alt="Drawing" width="1000px" height="170px"><br><img src="http://img.blog.csdn.net/20160513164339063" alt="这里写图片描述"></p>
+<h2 id="为什么使用MVP模式"><a href="#为什么使用MVP模式" class="headerlink" title="为什么使用MVP模式"></a><font color="#C4573C" size="4" face="黑体">为什么使用MVP模式</font></h2><p>在Android开发中，Activity并不是一个标准的MVC模式中的Controller，它的首要职责是加载应用的布局和初始化用户界面，并接受并处理来自用户的操作请求，进而作出响应。随着界面及其逻辑的复杂度不断提升，Activity类的职责不断增加，以致变得庞大臃肿。当我们将其中复杂的逻辑处理移至另外的一个类（Presneter）中时，Activity其实就是MVP模式中View，它负责UI元素的初始化，建立UI元素与Presenter的关联（Listener之类），同时自己也会处理一些简单的逻辑（复杂的逻辑交由Presenter处理）.</p>
+<p>另外，回想一下你在开发Android应用时是如何对代码逻辑进行单元测试的？是否每次都要将应用部署到Android模拟器或真机上，然后通过模拟用户操作进行测试？然而由于Android平台的特性，每次部署都耗费了大量的时间，这直接导致开发效率的降低。而在MVP模式中，处理复杂逻辑的Presenter是通过interface与View(Activity)进行交互的，这说明了什么？说明我们可以通过自定义类实现这个interface来模拟Activity的行为对Presenter进行单元测试，省去了大量的部署及测试的时间。</p>
+<h2 id="实例分析-1"><a href="#实例分析-1" class="headerlink" title="实例分析"></a><font color="#C4573C" size="4" face="黑体">实例分析</font></h2><font color="#C4573C" size="3" face="黑体">MVP模式</font>
+
+<p>View与Model并不直接交互，而是使用Presenter作为View与Model之间的桥梁。其中Presenter中同时持有Viwe层以及Model层的Interface的引用，而View层持有Presenter层Interface的引用。当View层某个界面需要展示某些数据的时候，首先会调用Presenter层的某个接口，然后Presenter层会调用Model层请求数据，当Model层数据加载成功之后会调用Presenter层的回调方法通知Presenter层数据加载完毕，最后Presenter层再调用View层的接口将加载后的数据展示给用户。这就是MVP模式的整个核心过程。</p>
+<font color="#C4573C" size="3" face="黑体">官方模式图</font>
+
+
+<p><a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="external">android-architecture官方传送门</a><br><img src="http://img.blog.csdn.net/20160513113256749" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20160513113408353" alt=""></p>
+<font color="#C4573C" size="3" face="黑体">案例</font>
+
+<p>这里以<font color="#C4573C" size="3" face="黑体">暴风体育</font>中的<font color="#C4573C" size="3" face="黑体">话题列表</font>为例来进行介绍：</p>
+<p><img src="http://img.blog.csdn.net/20160513121034417" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20160516163914095" alt="这里写图片描述"></p>
+<font color="#C4573C" size="3" face="黑体">TopicModel </font>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TopicModel</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 加载话题列表首页数据</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> listener</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">loadTopicList</span><span class="params">(Context context, TopicModelImpl.OnLoadTopicListListener listener)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 从本地数据库中获取我关注的话题数据</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> listener</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function">ArrayList&lt;TopicItem&gt; <span class="title">loadFollowTopic</span><span class="params">(Context context, TopicModelImpl.OnLoadTopicListListener listener)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 全部话题加载更多数据</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> paramMap</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> listener</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">loadMoreAllTopic</span><span class="params">(Context context, Map&lt;String, String&gt; paramMap, TopicModelImpl.OnLoadTopicListListener listener)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 更新我关注的话题的最新帖子数和帖子最近的更新时间</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> threadItem</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> listener</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updateThreadItem</span><span class="params">(<span class="keyword">final</span> Context context, ThreadItem threadItem, TopicModelImpl.OnLoadTopicListListener listener)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<font color="#C4573C" size="3" face="黑体">TopicPresenter </font>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TopicPresenter</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 加载话题列表首页数据</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">loadTopicList</span><span class="params">(Context context)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 全部话题加载更多数据</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> paramMap</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">loadMoreAllTopic</span><span class="params">(Context context, Map&lt;String, String&gt; paramMap)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function">ArrayList&lt;TopicItem&gt; <span class="title">loadFollowTopic</span><span class="params">(Context context)</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<font color="#C4573C" size="3" face="黑体">TopicView </font>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TopicView</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showProgress</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addTopics</span><span class="params">(List&lt;TopicItem&gt; topicList)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addSwipeUpItem</span><span class="params">(SwipeUpItem item)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addLoadMoreTopics</span><span class="params">(List&lt;TopicItem&gt; topicList)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hideProgress</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showLoadFailMsg</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">//二次请求需要重新刷新界面</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">notifyAdapter</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<font color="#C4573C" size="3" face="黑体">TopicModelImpl</font><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * DES：</span></div><div class="line"><span class="comment"> * Created by sushuai on 2016/4/13.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TopicModelImpl</span> <span class="keyword">implements</span> <span class="title">TopicModel</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"TopicModelImpl"</span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 加载话题列表首页数据</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> listener</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadTopicList</span><span class="params">(<span class="keyword">final</span> Context context, <span class="keyword">final</span> OnLoadTopicListListener listener)</span> </span>&#123;</div><div class="line">        AsyncHttpRequest.doASynGetRequest(context, UrlContainer.HOME_TOPIC, <span class="keyword">null</span>, <span class="keyword">true</span>, <span class="keyword">new</span> AsyncHttpRequest.CallBack() &#123;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fail</span><span class="params">(String ret)</span> </span>&#123;</div><div class="line">                listener.onFailure(Net.ErrorNo.NO_DATA);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String data)</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    ArrayList&lt;TopicItem&gt; items = (ArrayList&lt;TopicItem&gt;) TopicListDataParseUtils.readJsonTopicLists(data, listener);</div><div class="line">                    <span class="comment">//items.addAll(0, loadFollowTopic(context, listener));</span></div><div class="line">                    <span class="keyword">if</span> (items != <span class="keyword">null</span>) &#123;</div><div class="line">                        listener.onSuccess(items);</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">catch</span> (JSONException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                    listener.onFailure(Net.ErrorNo.ERROR_JSON);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 从本地数据库中获取我关注的话题数据</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> listener</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;TopicItem&gt; <span class="title">loadFollowTopic</span><span class="params">(Context context, <span class="keyword">final</span> OnLoadTopicListListener listener)</span> </span>&#123;</div><div class="line">        ArrayList&lt;TopicItem&gt; items = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        ArrayList&lt;ThreadItem&gt; ThreadItems = (ArrayList&lt;ThreadItem&gt;) FollowTopicDao.getInstance(context).getLatest3Topics();</div><div class="line">        <span class="keyword">if</span> (ThreadItems.size() &lt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> items;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ThreadItems.size(); i++) &#123;</div><div class="line">            ThreadItem threadItem = ThreadItems.get(i);</div><div class="line">            updateThreadItem(context, threadItem, listener);</div><div class="line">        &#125;</div><div class="line">        TopicItem meItem = <span class="keyword">new</span> TopicItem();</div><div class="line">        meItem.setType(TopicAdapter.TYPE_TOPIC_TITLE_ME);</div><div class="line">        items.add(meItem);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ThreadItems.size(); i++) &#123;</div><div class="line">            TopicItem topicItem = <span class="keyword">new</span> TopicItem();</div><div class="line">            topicItem.setType(TopicAdapter.TYPE_TOPIC_THREAD);</div><div class="line">            topicItem.setOther(ThreadItems.get(i));</div><div class="line">            items.add(topicItem);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> items;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 更新我关注的话题的最新帖子数和帖子最近的更新时间</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> threadItem</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> listener</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateThreadItem</span><span class="params">(<span class="keyword">final</span> Context context, <span class="keyword">final</span> ThreadItem threadItem, <span class="keyword">final</span> OnLoadTopicListListener listener)</span> </span>&#123;</div><div class="line">        Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">        map.put(Net.Field.id, String.valueOf(threadItem.getId()));</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> prePosts = threadItem.getCount();</div><div class="line">        AsyncHttpRequest.doASynGetRequest(context, UrlContainer.GET_TOPIC_POSTS, (HashMap&lt;String, String&gt;) map, <span class="keyword">true</span>, <span class="keyword">new</span> AsyncHttpRequest.CallBack() &#123;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fail</span><span class="params">(String ret)</span> </span>&#123;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String data)</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    JSONObject jo = <span class="keyword">new</span> JSONObject(data);</div><div class="line">                    <span class="keyword">int</span> errno = DataParseUtils.getJsonInt(jo, Net.Field.errno);</div><div class="line">                    <span class="keyword">if</span> (errno == Net.ErrorNo.SUCCESS) &#123;</div><div class="line">                        JSONObject jsonObj = DataParseUtils.getJsonObj(jo, Net.Field.data);</div><div class="line">                        <span class="keyword">int</span> count = DataParseUtils.getJsonInt(jsonObj, Net.Field.count);</div><div class="line">                        <span class="keyword">long</span> latest_update_tm = DataParseUtils.getJsonLong(jsonObj, Net.Field.latest_update_tm);</div><div class="line">                        threadItem.setUpdateCount(count - prePosts);</div><div class="line">                        threadItem.setCount(count);</div><div class="line">                        threadItem.setUpdateTime(latest_update_tm);</div><div class="line">                        FollowTopicDao.getInstance(context).updatePostsById(threadItem.getId(), count);</div><div class="line">                        listener.onUpdateThreadItem();</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">catch</span> (JSONException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 全部话题加载更多数据</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> paramMap</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> listener</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMoreAllTopic</span><span class="params">(Context context, Map&lt;String, String&gt; paramMap, <span class="keyword">final</span> OnLoadTopicListListener listener)</span> </span>&#123;</div><div class="line">        AsyncHttpRequest.doASynGetRequest(context, UrlContainer.TOPIC_LIST, (HashMap&lt;String, String&gt;) paramMap, <span class="keyword">true</span>, <span class="keyword">new</span> AsyncHttpRequest.CallBack() &#123;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fail</span><span class="params">(String ret)</span> </span>&#123;</div><div class="line">                listener.onFailure(Net.ErrorNo.NO_DATA);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String data)</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    ArrayList&lt;TopicItem&gt; items = (ArrayList&lt;TopicItem&gt;) TopicListDataParseUtils.readMoreAllTopic(data, listener);</div><div class="line">                    <span class="keyword">if</span> (items != <span class="keyword">null</span>) &#123;</div><div class="line">                        listener.onLoadMoreAllTopics(items);</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">catch</span> (JSONException e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                    listener.onFailure(Net.ErrorNo.ERROR_JSON);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnLoadTopicListListener</span> </span>&#123;</div><div class="line">        <span class="comment">//加载话题列表首页数据成功</span></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(List&lt;TopicItem&gt; list)</span></span>;</div><div class="line"></div><div class="line">        <span class="comment">//加载话题列表首页数据失败</span></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(<span class="keyword">int</span> erroNo)</span></span>;</div><div class="line"></div><div class="line">        <span class="comment">//全部话题加载更多相关配置</span></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onLoadMoreSwipeUp</span><span class="params">(SwipeUpItem item)</span></span>;</div><div class="line"></div><div class="line">        <span class="comment">//回去加载更多数据</span></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onLoadMoreAllTopics</span><span class="params">(List&lt;TopicItem&gt; list)</span></span>;</div><div class="line"></div><div class="line">        <span class="comment">//更新我关注的话题的相关数据</span></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onUpdateThreadItem</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><font color="#C4573C" size="3" face="黑体">TopicPresenterImpl</font><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * DES：</span></div><div class="line"><span class="comment"> * Created by sushuai on 2016/4/13.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TopicPresenterImpl</span> <span class="keyword">implements</span> <span class="title">TopicPresenter</span>, <span class="title">TopicModelImpl</span>.<span class="title">OnLoadTopicListListener</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"TopicPresenterImpl"</span>;</div><div class="line">    <span class="keyword">private</span> TopicModel mTopicModel;</div><div class="line">    <span class="keyword">private</span> TopicView mTopicView;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TopicPresenterImpl</span><span class="params">(TopicView topicView)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mTopicModel = <span class="keyword">new</span> TopicModelImpl();</div><div class="line">        <span class="keyword">this</span>.mTopicView = topicView;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadTopicList</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        mTopicModel.loadTopicList(context, <span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadMoreAllTopic</span><span class="params">(Context context, Map&lt;String, String&gt; paramMap)</span> </span>&#123;</div><div class="line">        mTopicModel.loadMoreAllTopic(context, paramMap, <span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;TopicItem&gt; <span class="title">loadFollowTopic</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mTopicModel.loadFollowTopic(context,<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(List&lt;TopicItem&gt; list)</span> </span>&#123;</div><div class="line">        mTopicView.hideProgress();</div><div class="line">        mTopicView.addTopics(list);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(<span class="keyword">int</span> erroNo)</span> </span>&#123;</div><div class="line">        mTopicView.hideProgress();</div><div class="line">        mTopicView.showLoadFailMsg();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadMoreSwipeUp</span><span class="params">(SwipeUpItem item)</span> </span>&#123;</div><div class="line">        mTopicView.addSwipeUpItem(item);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadMoreAllTopics</span><span class="params">(List&lt;TopicItem&gt; list)</span> </span>&#123;</div><div class="line">        mTopicView.addLoadMoreTopics(list);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpdateThreadItem</span><span class="params">()</span> </span>&#123;</div><div class="line">        mTopicView.notifyAdapter();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><font color="#C4573C" size="3" face="黑体">TabTopicFragment</font><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 话题</span></div><div class="line"><span class="comment"> * SuShuai</span></div><div class="line"><span class="comment"> * 2016/4/12 14:39</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TabTopicFragment</span> <span class="keyword">extends</span> <span class="title">BaseFragment</span> <span class="keyword">implements</span> <span class="title">TopicAdapter</span>.<span class="title">AdapterCallback</span>, <span class="title">TopicView</span>, <span class="title">IHandlerMessage</span>, <span class="title">XListView</span>.<span class="title">IXListViewListener</span> </span>&#123;</div><div class="line">    <span class="comment">// <span class="doctag">TODO:</span> Rename parameter arguments, choose names that match</span></div><div class="line">    <span class="comment">// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"TabTopicFragment"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ARG_PARAM1 = <span class="string">"param1"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ARG_PARAM2 = <span class="string">"param2"</span>;</div><div class="line"></div><div class="line">    <span class="comment">// <span class="doctag">TODO:</span> Rename and change types of parameters</span></div><div class="line">    <span class="keyword">private</span> String mParam1;</div><div class="line">    <span class="keyword">private</span> String mParam2;</div><div class="line">    <span class="keyword">private</span> XListView listView;</div><div class="line">    <span class="keyword">private</span> TopicAdapter topicAdapter;</div><div class="line">    <span class="keyword">private</span> ArrayList&lt;TopicItem&gt; topicList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    <span class="keyword">private</span> ArrayList&lt;TopicItem&gt; homeList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    <span class="keyword">private</span> ArrayList&lt;TopicItem&gt; followTopicList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    <span class="keyword">private</span> TopicPresenter mTopicPresenter;</div><div class="line">    <span class="keyword">private</span> CommonHandler&lt;TabTopicFragment&gt; handler;</div><div class="line">    <span class="keyword">private</span> SwipeUpItem swipeUpItem;</div><div class="line">    <span class="keyword">private</span> View rootView;</div><div class="line">    <span class="keyword">private</span> String after = <span class="string">""</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TabTopicFragment</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// Required empty public constructor</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * Use this factory method to create a new instance of</span></div><div class="line"><span class="comment">     * this fragment using the provided parameters.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> param1 Parameter 1.</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> param2 Parameter 2.</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span> A new instance of fragment TabTopicFragment.</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="comment">// <span class="doctag">TODO:</span> Rename and change types and number of parameters</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TabTopicFragment <span class="title">newInstance</span><span class="params">(String param1, String param2)</span> </span>&#123;</div><div class="line">        TabTopicFragment fragment = <span class="keyword">new</span> TabTopicFragment();</div><div class="line">        Bundle args = <span class="keyword">new</span> Bundle();</div><div class="line">        args.putString(ARG_PARAM1, param1);</div><div class="line">        args.putString(ARG_PARAM2, param2);</div><div class="line">        fragment.setArguments(args);</div><div class="line">        <span class="keyword">return</span> fragment;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAttach</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onAttach(context);</div><div class="line">        LogHelper.e(TAG, <span class="string">"SuS--&gt; onAttach: "</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        <span class="keyword">if</span> (getArguments() != <span class="keyword">null</span>) &#123;</div><div class="line">            mParam1 = getArguments().getString(ARG_PARAM1);</div><div class="line">            mParam2 = getArguments().getString(ARG_PARAM2);</div><div class="line">        &#125;</div><div class="line">        mTopicPresenter = <span class="keyword">new</span> TopicPresenterImpl(<span class="keyword">this</span>);</div><div class="line">        LogHelper.e(TAG, <span class="string">"SuS--&gt; onCreate: "</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container,</span></span></div><div class="line"><span class="function"><span class="params">                             Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        LogHelper.e(TAG, <span class="string">"whb--&gt; onCreateView: "</span>);</div><div class="line">        <span class="keyword">if</span> (rootView == <span class="keyword">null</span>) &#123;</div><div class="line">            rootView = inflater.inflate(R.layout.fragment_tab_topic, container, <span class="keyword">false</span>);</div><div class="line">            initViews(rootView);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> rootView;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onActivityCreated</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        LogHelper.e(TAG, <span class="string">"SuS--&gt; onActivityCreated: "</span>);</div><div class="line">        <span class="keyword">super</span>.onActivityCreated(savedInstanceState);</div><div class="line">        initData();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span> </span>&#123;</div><div class="line">        handler = <span class="keyword">new</span> CommonHandler&lt;TabTopicFragment&gt;(<span class="keyword">this</span>);</div><div class="line">        topicAdapter = <span class="keyword">new</span> TopicAdapter(getActivity(), <span class="keyword">this</span>);</div><div class="line">        listView.setAdapter(topicAdapter);</div><div class="line">        <span class="keyword">if</span> (NetUtils.isNetworkAvaliable(getActivity())) &#123;</div><div class="line">            showLoadingView();</div><div class="line">            mTopicPresenter.loadTopicList(getActivity());</div><div class="line">            followTopicList = mTopicPresenter.loadFollowTopic(getActivity());</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (topicList.size() &gt; <span class="number">0</span>) &#123;</div><div class="line">                topicAdapter.update(topicList);</div><div class="line">                ToastUtils.toast(getActivity(), <span class="string">"没有网络"</span>);</div><div class="line">                listView.restListView();</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">            showNetErroView(R.string.tips_net_error);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initViews</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        setImmerseLayout(v.findViewById(R.id.common_back));</div><div class="line">        setTitleBar(v, R.string.tab_topic);</div><div class="line">        setLeftGone(v);</div><div class="line">        listView = (XListView) v.findViewById(R.id.lv_topic);</div><div class="line">        listView.setPullRefreshEnable(<span class="keyword">true</span>);</div><div class="line">        listView.setPullLoadEnable(<span class="keyword">true</span>);</div><div class="line">        listView.setAutoLoadEnable(<span class="keyword">true</span>);</div><div class="line">        listView.setXListViewListener(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAdapterCallback</span><span class="params">(<span class="keyword">int</span> eventId, Object obj)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (isAdded()) &#123;</div><div class="line">            BaofengStatistics.onUmengEvent(getActivity(), BfCountConst.TopicConst.BBS_MOREFOLLOW_CLICK);</div><div class="line">            LogHelper.v(<span class="string">"umeng"</span>, <span class="string">"bbs_morefollow_click  计数一次"</span>);</div><div class="line">        &#125;</div><div class="line">        ActivityUtil.startActivity(getActivity(), MoreFollowTopicActivity.class, <span class="keyword">null</span>, <span class="keyword">false</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showProgress</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addTopics</span><span class="params">(List&lt;TopicItem&gt; topicList)</span> </span>&#123;</div><div class="line">        handler.obtainMessage(HandlerMsg.MSG_LOAD_TOPIC_LIST_SUC,</div><div class="line">                topicList).sendToTarget();</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addSwipeUpItem</span><span class="params">(SwipeUpItem item)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (item == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        handler.obtainMessage(HandlerMsg.MSG_LOAD_SWIPE_UP_ITEM,</div><div class="line">                item).sendToTarget();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLoadMoreTopics</span><span class="params">(List&lt;TopicItem&gt; topicList)</span> </span>&#123;</div><div class="line">        handler.obtainMessage(HandlerMsg.MSG_LOAD_MORE_TOPICS,</div><div class="line">                topicList).sendToTarget();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hideProgress</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// handler.obtainMessage(HandlerMsg.MSG_DISMISS_LOADING).sendToTarget();</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showLoadFailMsg</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (topicList == <span class="keyword">null</span> || topicList.size() == <span class="number">0</span>) &#123;</div><div class="line">            handler.obtainMessage(HandlerMsg.MSG_SHOW_EMPTY_CONTENT).sendToTarget();</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            handler.obtainMessage(HandlerMsg.MSG_SHOW_FAIL).sendToTarget();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyAdapter</span><span class="params">()</span> </span>&#123;</div><div class="line">        handler.obtainMessage(HandlerMsg.MSG_NOTIFY_ADAPTER_CONTENT).sendToTarget();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handlerCallback</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (msg.what) &#123;</div><div class="line">            <span class="keyword">case</span> HandlerMsg.MSG_LOAD_TOPIC_LIST_SUC:</div><div class="line">                dealTopicListSuc(msg);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> HandlerMsg.MSG_LOAD_SWIPE_UP_ITEM:</div><div class="line">                SwipeUpItem item = (SwipeUpItem) msg.obj;</div><div class="line">                <span class="keyword">this</span>.swipeUpItem = item;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> HandlerMsg.MSG_LOAD_MORE_TOPICS:</div><div class="line">                dealLoadMoreTopics(msg);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> HandlerMsg.MSG_DISMISS_LOADING:</div><div class="line">                dismissLoadingView();</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> HandlerMsg.MSG_SHOW_EMPTY_CONTENT:</div><div class="line">                showContentEmptyView();</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> HandlerMsg.MSG_NOTIFY_ADAPTER_CONTENT:</div><div class="line">                topicAdapter.notifyDataSetChanged();</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> HandlerMsg.MSG_SHOW_FAIL:</div><div class="line">                ToastUtils.toast(getActivity(),R.string.error_no);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dealLoadMoreTopics</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">        List&lt;TopicItem&gt; moreList = (List&lt;TopicItem&gt;) msg.obj;</div><div class="line">        <span class="keyword">int</span> count1 = listView.getLastVisiblePosition();</div><div class="line">        <span class="keyword">int</span> count2 = topicAdapter.getCount()-<span class="number">1</span>+<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span> (moreList.size() &lt; swipeUpItem.getLimit() &amp;&amp; count1 == count2) &#123;</div><div class="line">            ToastUtils.toast(getActivity(), <span class="string">"已到达底部"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (moreList.size() &gt; <span class="number">0</span>) &#123;</div><div class="line">            after = TabTopicUtil.getLastKey(moreList);</div><div class="line">        &#125;</div><div class="line">        TabTopicUtil.filterDuplicatedTopic(moreList,homeList);</div><div class="line">        <span class="keyword">this</span>.topicList.addAll(moreList);</div><div class="line">        topicAdapter.update(<span class="keyword">this</span>.topicList);</div><div class="line">        listView.restListView();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dealTopicListSuc</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">        List&lt;TopicItem&gt; topicList = (List&lt;TopicItem&gt;) msg.obj;</div><div class="line">        <span class="keyword">if</span> (topicList.size() &lt;= <span class="number">0</span>) &#123;</div><div class="line">            showContentEmptyView();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        after = TabTopicUtil.getLastKey(topicList);</div><div class="line">        TabTopicUtil.removeDuplicateWithOrder(topicList);</div><div class="line">        topicList.addAll(<span class="number">0</span>,followTopicList);</div><div class="line">        <span class="keyword">this</span>.topicList = (ArrayList&lt;TopicItem&gt;) topicList;</div><div class="line">        <span class="keyword">this</span>.homeList = (ArrayList&lt;TopicItem&gt;) topicList;</div><div class="line">        topicAdapter.update(topicList);</div><div class="line">        dismissLoadingView();</div><div class="line">        listView.restListView();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRefresh</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//handler.postDelayed(new Runnable() &#123;</span></div><div class="line">        <span class="comment">// @Override</span></div><div class="line">        <span class="comment">//public void run() &#123;</span></div><div class="line">        <span class="keyword">if</span> (NetUtils.isNetworkAvaliable(getActivity())) &#123;</div><div class="line">            mTopicPresenter.loadTopicList(getActivity());</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (topicList.size() &gt; <span class="number">0</span>) &#123;</div><div class="line">                ToastUtils.toast(getActivity(), <span class="string">"没有网络"</span>);</div><div class="line">                listView.restListView();</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">            showNetErroView(R.string.tips_net_error);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// &#125;</span></div><div class="line">        <span class="comment">//&#125;, 2000);</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadMore</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        handler.postDelayed(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                Map&lt;String, String&gt; m = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">                <span class="keyword">int</span> size = topicList.size();</div><div class="line">                <span class="keyword">if</span> (size &lt;= <span class="number">0</span>)</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                m.put(Net.Param.ID, String.valueOf(swipeUpItem.getId()));</div><div class="line">                m.put(Net.Param.AFTER, after);</div><div class="line">                m.put(Net.Param.LIMIT, String.valueOf(swipeUpItem.getLimit()));</div><div class="line">                <span class="keyword">if</span> (NetUtils.isNetworkAvaliable(getActivity())) &#123;</div><div class="line">                    mTopicPresenter.loadMoreAllTopic(getActivity(), m);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    ToastUtils.toast(getActivity(), <span class="string">"没有网络"</span>);</div><div class="line">                    listView.restListView();</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;, <span class="number">500</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (v.getId()) &#123;</div><div class="line">            <span class="keyword">case</span> R.id.fragment_net_error_subTree:</div><div class="line">                reQuestData();</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 重新请求数据</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">reQuestData</span><span class="params">()</span> </span>&#123;</div><div class="line">        dismissNetErroView();</div><div class="line">        dismissContentEmptyView();</div><div class="line">        <span class="keyword">if</span> (NetUtils.isNetworkAvaliable(getActivity())) &#123;</div><div class="line">            showLoadingView();</div><div class="line">            mTopicPresenter.loadTopicList(getActivity());</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            showNetErroView(R.string.tips_net_error);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HandlerMsg</span> </span>&#123;</div><div class="line">        <span class="comment">//获取话题列表成功</span></div><div class="line">        <span class="keyword">int</span> MSG_LOAD_TOPIC_LIST_SUC = <span class="number">2002</span>;</div><div class="line">        <span class="comment">//获取加载更多配置选项</span></div><div class="line">        <span class="keyword">int</span> MSG_LOAD_SWIPE_UP_ITEM = <span class="number">2003</span>;</div><div class="line">        <span class="comment">//加载更多话题</span></div><div class="line">        <span class="keyword">int</span> MSG_LOAD_MORE_TOPICS = <span class="number">2004</span>;</div><div class="line">        <span class="comment">//隐藏loading</span></div><div class="line">        <span class="keyword">int</span> MSG_DISMISS_LOADING = <span class="number">2005</span>;</div><div class="line">        <span class="comment">//显示空</span></div><div class="line">        <span class="keyword">int</span> MSG_SHOW_EMPTY_CONTENT = <span class="number">2006</span>;</div><div class="line">        <span class="comment">//二次请求刷新界面</span></div><div class="line">        <span class="keyword">int</span> MSG_NOTIFY_ADAPTER_CONTENT = <span class="number">2007</span>;</div><div class="line">        <span class="comment">//显示失败</span></div><div class="line">        <span class="keyword">int</span> MSG_SHOW_FAIL = <span class="number">2008</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDestroyView</span><span class="params">()</span> </span>&#123;</div><div class="line"><span class="comment">//        unbindDrawables(getView());</span></div><div class="line">        LogHelper.e(TAG, <span class="string">"whb--&gt; onDestroyView: "</span>);</div><div class="line">        <span class="keyword">super</span>.onDestroyView();</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onResume();</div><div class="line">        LogHelper.d(TAG, <span class="string">"SuS--&gt; onResume: "</span>);</div><div class="line">            BaofengStatistics.onUmengEvent(getActivity(), BfCountConst.TopicConst.BBS_CHANNELLIST_SHOW);</div><div class="line">            LogHelper.v(<span class="string">"umeng"</span>, <span class="string">"bbs_channelList_show  计数一次"</span>);</div><div class="line">        topicList.removeAll(followTopicList);</div><div class="line">        followTopicList = mTopicPresenter.loadFollowTopic(getActivity());</div><div class="line">        topicList.addAll(<span class="number">0</span>,followTopicList);</div><div class="line">        topicAdapter.notifyDataSetChanged();</div><div class="line">        <span class="comment">//initData();</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br>## <font color="#C4573C" size="5" face="黑体">MVP与MVC的异同</font><br> MVC模式与MVP模式都作为用来分离UI层与业务层的一种开发模式被应用了很多年。在我们选择一种开发模式时，首先需要了解一下这种模式的利弊：<br><br> 无论MVC或是MVP模式都不可避免地存如下弊端，这就导致了这两种开发模式也许并不是很小型应用。<br>         &gt;<em>  额外的代码复杂度和学习成本<br><br>但比起他们的优点，这点弊端基本可以忽略了：<br>      &gt;</em> 降低耦合度<br>      &gt;<em> 模块职责划分明显<br>      &gt;</em>  利于测试驱动开发<br>      &gt;<em> 代码复用<br>      &gt;</em> 隐藏数据<br>      &gt;<em> 代码灵活性<br><br> 对于MVP与MVC这两种模式，它们之间也有很大的差异。以下是这两种模式之间最关键的差异：<br>     MVP模式：<br>&gt;</em> View不直接与Model交互，而是通过与Presenter交互来与Model间接交互<br>&gt;<em> Presenter与View的交互是通过接口来进行的，更有利于添加单元测试<br>&gt;</em> 通常View与Presenter是一对一的，但复杂的View可能绑定多个Presenter来处理逻辑<br><br>MVC模式：<br>&gt;<em> View可以与Model直接交互<br>&gt;</em> Controller是基于行为的，并且可以被多个View共享<br>&gt;* 可以负责决定显示哪个View<br># <font color="#C4573C" size="5" face="黑体">MVVM</font><br><img src="http://img.blog.csdn.net/20160513113127889" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20160513113209084" alt="这里写图片描述"><br># <font color="#C4573C" size="5" face="黑体">Data-Binding</font><br>## <font color="#C4573C" size="4" face="黑体">前言</font>
+
+<blockquote>
+<ul>
+<li>第三方的数据绑定框架随时有停止更新的风险，官方的则相对更稳定一些</li>
+<li>大量的findViewById，增加代码的耦合性</li>
+<li>虽然可以通过注解框架抛弃大量的findViewById，但是注解注定要拖慢我们代码的速度，Data Binding则不会，官网文档说还会提高解析XML的速度</li>
+</ul>
+</blockquote>
+<p>这里不赘述了，下面几篇文章都讲的很详细！</p>
+<p><a href="https://github.com/LyndonChin/MasteringAndroidDataBinding/" target="_blank" rel="external">精通 Android Data Binding</a><br> <a href="http://blog.csdn.net/qibin0506/article/details/47393725" target="_blank" rel="external">Android官方数据绑定框架DataBinding(一)</a><br> <a href="http://blog.csdn.net/qibin0506/article/details/47720125" target="_blank" rel="external">Android官方数据绑定框架DataBinding(二)</a><br><a href="https://developer.android.com/topic/libraries/data-binding/index.html#build_environment" target="_blank" rel="external">官方Data Binding Library</a></p>
+<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a><font color="#C4573C" size="4" face="黑体">参考链接：</font></h2><p>1、<a href="https://www.zhihu.com/question/21406685" target="_blank" rel="external">https://www.zhihu.com/question/21406685</a><br>2、<a href="http://liuling123.com/2015/12/mvp-pattern-android.html" target="_blank" rel="external">http://liuling123.com/2015/12/mvp-pattern-android.html</a><br>3、<a href="http://www.2cto.com/kf/201506/405766.html" target="_blank" rel="external">http://www.2cto.com/kf/201506/405766.html</a><br>4、<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0313/2599.html" target="_blank" rel="external">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0313/2599.html</a><br>5、<a href="http://blog.csdn.net/qibin0506/article/details/47393725" target="_blank" rel="external">http://blog.csdn.net/qibin0506/article/details/47393725</a><br>6、<a href="http://zjutkz.net/2016/04/13/%E9%80%89%E6%8B%A9%E6%81%90%E6%83%A7%E7%97%87%E7%9A%84%E7%A6%8F%E9%9F%B3%EF%BC%81%E6%95%99%E4%BD%A0%E8%AE%A4%E6%B8%85MVC%EF%BC%8CMVP%E5%92%8CMVVM/#plg_nld=1&amp;plg_auth=1&amp;plg_nld=1&amp;plg_dev=1&amp;plg_uin=1&amp;plg_usr=1&amp;plg_vkey=1&amp;plg_nld=1&amp;more?hmsr=toutiao.io&amp;utm_source=toutiao.io&amp;plg_uin=1&amp;plg_auth=1&amp;utm_medium=toutiao.io&amp;plg_dev=1&amp;plg_nld=1&amp;plg_usr=1&amp;plg_vkey=1" target="_blank" rel="external">http://zjutkz.net/2016/04/13/%E9%80%89%E6%8B%A9%E6%81%90%E6%83%A7%E7%97%87%E7%9A%84%E7%A6%8F%E9%9F%B3%EF%BC%81%E6%95%99%E4%BD%A0%E8%AE%A4%E6%B8%85MVC%EF%BC%8CMVP%E5%92%8CMVVM/#plg_nld=1&amp;plg_auth=1&amp;plg_nld=1&amp;plg_dev=1&amp;plg_uin=1&amp;plg_usr=1&amp;plg_vkey=1&amp;plg_nld=1&amp;more?hmsr=toutiao.io&amp;utm_source=toutiao.io&amp;plg_uin=1&amp;plg_auth=1&amp;utm_medium=toutiao.io&amp;plg_dev=1&amp;plg_nld=1&amp;plg_usr=1&amp;plg_vkey=1</a><br>7、<a href="http://blog.csdn.net/wusuopubupt/article/details/8817826" target="_blank" rel="external">http://blog.csdn.net/wusuopubupt/article/details/8817826</a><br>8、<a href="https://github.com/LyndonChin/MasteringAndroidDataBinding\" target="_blank" rel="external">https://github.com/LyndonChin/MasteringAndroidDataBinding\</a><br>9、<a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="external">https://github.com/googlesamples/android-architecture</a><br>10、<a href="http://www.jianshu.com/p/569ab68da482" target="_blank" rel="external">http://www.jianshu.com/p/569ab68da482</a><br>11、<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0425/4178.html" target="_blank" rel="external">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0425/4178.html</a><br>12、<a href="http://blog.csdn.net/vector_yi/article/details/24719873" target="_blank" rel="external">http://blog.csdn.net/vector_yi/article/details/24719873</a></p>
+
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/Android-Architecture/">Android Architecture</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+    <div class='post-wrapper'>
+      <article class="post reveal">
+  <section class="meta">
+    
+    <h2 class="title">
+      <a href="/2016/05/27/Android Architecture（Is Activity God？）/">
+        Android Architecture（Is Activity God？）
+      </a>
+    </h2>
+    
+    <time>
+      May 27, 2016
+    </time>
+		
+    
+    <div class='cats'>
+        <a href="/categories/Android/">Android</a>
+    </div>
+
+  </section>
+  <section class="article typo">
+	  <h2 id="分享MVC、MVP、MVVM和Data-Binding的简要PPT"><a href="#分享MVC、MVP、MVVM和Data-Binding的简要PPT" class="headerlink" title="分享MVC、MVP、MVVM和Data-Binding的简要PPT"></a>分享MVC、MVP、MVVM和Data-Binding的简要PPT</h2><p><img src="http://img.blog.csdn.net/20160523232126227" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232149915" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232222367" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232233101" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232243148" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232252805" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232303352" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232316180" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232325680" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232337231" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232356434" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232420294" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232440842" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20160523232451045" alt="这里写图片描述"></p>
+
+
+    
+    
+    
+	  <div class="full-width auto-padding tags">
+      
+        <a href="/tags/Android-Architecture/">Android Architecture</a>
+      
+	  </div>
+    
+  </section>
+</article>
+    </div>
+  
+</section>
+
+
+      </div>
+      <aside class='l_side'>
+        
+  <section class='m_widget about'>
+
+<div class='header'>SuS</div>
+<div class='content'>
+<div class='desc'>Tempora mutantur, nos et mutamur in illis ...</div>
+</div>
+</section>
+
+  <section class='m_widget links'>
+<div class='header'>Links</div>
+<div class='content'>
+    <ul class="entry">
+    
+        <li><a class="flat-box" target="_blank" href="https://ccoooss.com">
+            <div class='name'>ClassicOldSong</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://frantic1048.logdown.com/">
+            <div class='name'>Frantic1048</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://hclmaster.github.io/">
+            <div class='name'>Hclmaster</div>
+        </a></li>
+    
+        <li><a class="flat-box" target="_blank" href="https://whst.github.io/">
+            <div class='name'>WANG Hsü-Tung</div>
+        </a></li>
+    
+    </ul>
+</div>
+</section>
+
+  <section class='m_widget categories'>
+<div class='header'>Categories</div>
+<div class='content'>
+    
+    <ul class="entry">
+    
+        <li><a class="flat-box" href="/categories/Android/"><div class='name'>Android</div><div class='badget'>12</div></a></li>
+    
+    </ul>
+    
+</div>
+</section>
+
+  
+<div class="m_widget tagcloud">
+    <div class="header">Tags</div>
+    <div class='content'>
+        <a href="/tags/Android-Architecture/" style="font-size: 20px; color: #000">Android Architecture</a> <a href="/tags/EventBus/" style="font-size: 14px; color: #808080">EventBus</a> <a href="/tags/Jcenter/" style="font-size: 14px; color: #808080">Jcenter</a> <a href="/tags/Material-Design/" style="font-size: 14px; color: #808080">Material Design</a> <a href="/tags/Retrofit/" style="font-size: 14px; color: #808080">Retrofit</a> <a href="/tags/RxJava/" style="font-size: 14px; color: #808080">RxJava</a> <a href="/tags/StickyListHeaders/" style="font-size: 14px; color: #808080">StickyListHeaders</a> <a href="/tags/SwipeLayout/" style="font-size: 14px; color: #808080">SwipeLayout</a> <a href="/tags/SwipeToLoadLayout/" style="font-size: 14px; color: #808080">SwipeToLoadLayout</a> <a href="/tags/ToolBar/" style="font-size: 14px; color: #808080">ToolBar</a> <a href="/tags/View/" style="font-size: 20px; color: #000">View</a> <a href="/tags/view/" style="font-size: 14px; color: #808080">view</a> <a href="/tags/事件总线库/" style="font-size: 14px; color: #808080">事件总线库</a> <a href="/tags/微信/" style="font-size: 14px; color: #808080">微信</a> <a href="/tags/插件化/" style="font-size: 14px; color: #808080">插件化</a> <a href="/tags/支付宝/" style="font-size: 14px; color: #808080">支付宝</a> <a href="/tags/移动支付/" style="font-size: 14px; color: #808080">移动支付</a>
+    </div>
+</div>
+
+
+
+      </aside>
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+  </div>
+  <footer id="footer" class="clearfix">
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="https://github.com/stkevintan" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+        <a href="https://twitter.com/kevinsfork" class="social twitter"
+          target="_blank" rel="external">
+          <span class="icon icon-twitter"></span>
+        </a>
+      
+        <a href="/atom.xml" class="social rss"
+          target="_blank" rel="external">
+          <span class="icon icon-rss"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <a href='https://github.com/stkevintan/hexo-theme-material-flow' class="codename">MaterialFlow</a> designed by <a href="http://keyin.me/" target="_blank">Kevin Tan</a>.</div>
+  
+</footer>
+
+
+  <script>setLoadingBarProgress(80);</script>
   
 
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src='//cdn.bootcss.com/node-waves/0.7.5/waves.min.js'></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "hexo";
+  var ROOT = "/"||"/";
+  if(!ROOT.endsWith('/'))ROOT += '/';
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
 
 
-
-
-
-  
-  
-
-  
-
-  
-
-  
-
+  <script>setLoadingBarProgress(100);</script>
 </body>
 </html>
