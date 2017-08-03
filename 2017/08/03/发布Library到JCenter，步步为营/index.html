@@ -1,0 +1,816 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Jcenter," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="#前言将自己写的库上传到Jcenter或者Maven提供给自己或者别人使用，在构建项目的时候只要写上一行如下类似的引用代码即可引用自己的库1compile &amp;apos;com.sus.library:imagelib:1.0.0&amp;apos; 看到这篇文章的同学可能之前已经踩了不少坑，希望下面的介绍可以帮你解惑如果有什么问题欢迎提出！趁热乎哈！ 下面将逐步介绍如何将Library发布到JCenter">
+<meta name="keywords" content="Jcenter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="发布Library到JCenter，步步为营">
+<meta property="og:url" content="http://yoursite.com/2017/08/03/发布Library到JCenter，步步为营/index.html">
+<meta property="og:site_name" content="SuS&#39;s Blog">
+<meta property="og:description" content="#前言将自己写的库上传到Jcenter或者Maven提供给自己或者别人使用，在构建项目的时候只要写上一行如下类似的引用代码即可引用自己的库1compile &amp;apos;com.sus.library:imagelib:1.0.0&amp;apos; 看到这篇文章的同学可能之前已经踩了不少坑，希望下面的介绍可以帮你解惑如果有什么问题欢迎提出！趁热乎哈！ 下面将逐步介绍如何将Library发布到JCenter">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1814304-c002779dfbdfcedf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/h/620">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1814304-a377bf8127073659.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/h/620">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1814304-50ecfd641940a7da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/h/620">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1814304-58552f3f7e61c4fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1814304-c7229a3e316c3b4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/h/620">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1814304-3e4a1570454101d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620/h/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1814304-5e7a1d909f9dcbe2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620/h/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1814304-f862140619fdecaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1814304-7a9ef92c5c879d3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1814304-da1865ced355d93c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-08-03T04:01:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="发布Library到JCenter，步步为营">
+<meta name="twitter:description" content="#前言将自己写的库上传到Jcenter或者Maven提供给自己或者别人使用，在构建项目的时候只要写上一行如下类似的引用代码即可引用自己的库1compile &amp;apos;com.sus.library:imagelib:1.0.0&amp;apos; 看到这篇文章的同学可能之前已经踩了不少坑，希望下面的介绍可以帮你解惑如果有什么问题欢迎提出！趁热乎哈！ 下面将逐步介绍如何将Library发布到JCenter">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1814304-c002779dfbdfcedf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/h/620">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/03/发布Library到JCenter，步步为营/"/>
+
+  <title> 发布Library到JCenter，步步为营 | SuS's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">SuS's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Much to Live For</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                发布Library到JCenter，步步为营
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-03T12:00:00+08:00" content="2017-08-03">
+              2017-08-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/08/03/发布Library到JCenter，步步为营/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/03/发布Library到JCenter，步步为营/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-eye"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#前言<br>将自己写的库上传到Jcenter或者Maven提供给自己或者别人使用，在构建项目的时候只要写上一行如下类似的引用代码即可引用自己的库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.sus.library:imagelib:1.0.0&apos;</div></pre></td></tr></table></figure></p>
+<p>看到这篇文章的同学可能之前已经踩了不少坑，希望下面的介绍可以帮你解惑<br>如果有什么问题欢迎提出！趁热乎哈！</p>
+<p>下面将逐步介绍如何将Library发布到JCenter</p>
+<p>具体案例为：<a href="https://github.com/soulrelay/ImageLoaderUtil" target="_blank" rel="external">ImageLoaderUtil</a><br>所有下文涉及到的文件和配置都包含在其中，如果你觉得对你有用，麻烦STAR一下</p>
+<p>###1、进入<a href="https://bintray.com" target="_blank" rel="external">Bintray</a>官网<br><img src="http://upload-images.jianshu.io/upload_images/1814304-c002779dfbdfcedf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/h/620" alt="Bintray官网首页"></p>
+<blockquote>
+<ul>
+<li>这里选择“For an Open Source Account Sign Up Here”,而非“START YOUR FREE TRIAL”，如果选择 “START YOUR FREE TRIAL”，可能会碰到下面的问题  <a href="https://stackoverflow.com/questions/41953886/bintray-link-to-jcenter-missing" target="_blank" rel="external">Bintray link to jcenter missing</a></li>
+<li>问题结论就是：”Add To JCenter” is not enabled for Enterprise Trial users. You need to be OSS or Premium organization/user in order to link your packages to JCenter.</li>
+</ul>
+</blockquote>
+<p>###2、注册账号<br><img src="http://upload-images.jianshu.io/upload_images/1814304-a377bf8127073659.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/h/620" alt="账号注册页面"><br>填写相关信息，邮箱尽量使用Gmail邮箱地址（国内邮箱有可能无法注册或者注册成功无法收到激活邮件），注册完成之后到你填写的邮箱里面去激活Bintray账号即可<br>举例：</p>
+<blockquote>
+<ul>
+<li>First Name : Shuai</li>
+<li>Last Name : Su</li>
+<li>Username : su2008shuai</li>
+<li>Password : xxxxxxxxxxxxxx</li>
+<li>Emai Address : su2008shuai@gmail.com</li>
+<li>Select Country : China</li>
+</ul>
+</blockquote>
+<p>###3、创建代码仓库</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1814304-50ecfd641940a7da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/h/620" alt="View Profile"></p>
+<p>点击上图所示的“Add NewRepository”按钮，添加代码仓库，点击后就会跳转到下图的界面</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1814304-58552f3f7e61c4fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620/1240" alt="创建仓库"></p>
+<p>举例：</p>
+<blockquote>
+<ul>
+<li>Name : me</li>
+<li>Type : Maven</li>
+</ul>
+</blockquote>
+<p>###4、获取头像对应的API KEY<br>点击右上角个人头像进入到个人信息主界面，点击Edit按钮即可进入到下图所示的界面。点击“API KEY”，输入Bintray本账号的登陆密码，即可查看到本账号的API KEY<br><img src="http://upload-images.jianshu.io/upload_images/1814304-c7229a3e316c3b4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/h/620" alt="API KEY"></p>
+<p>###5、Add New Package</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1814304-3e4a1570454101d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620/h/1240" alt="创建包"><br>举例：</p>
+<blockquote>
+<ul>
+<li>Name : imagelib</li>
+<li>License : Apache-2.0</li>
+<li>Version control : <a href="https://github.com/soulrelay/ImageLoaderUtil" target="_blank" rel="external">https://github.com/soulrelay/ImageLoaderUtil</a></li>
+</ul>
+</blockquote>
+<p>###6、Project的build.gradle添加如下信息<br>在Project的build.gradle添加如下信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//用于打包Maven所需文件</div><div class="line">classpath &apos;com.github.dcendents:android-maven-gradle-plugin:1.4.1&apos; </div><div class="line">//用于上传Maven生成的文件到Bintray</div><div class="line">classpath &apos;com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6&apos;</div></pre></td></tr></table></figure></p>
+<p>我的Project的build.gradle的完整信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">// Top-level build file where you can add configuration options common to all sub-projects/modules.</div><div class="line">buildscript &#123;</div><div class="line">repositories &#123;</div><div class="line">jcenter()</div><div class="line">&#125;</div><div class="line">dependencies &#123;</div><div class="line">classpath &apos;com.android.tools.build:gradle:2.3.0&apos;</div><div class="line"></div><div class="line">//用于打包Maven所需文件</div><div class="line">classpath &apos;com.github.dcendents:android-maven-gradle-plugin:1.4.1&apos; </div><div class="line">//用于上传Maven生成的文件到Bintray</div><div class="line">classpath &apos;com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6&apos; </div><div class="line"></div><div class="line">// NOTE: Do not place your application dependencies here; they belong</div><div class="line">// in the individual module build.gradle files</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">allprojects &#123;</div><div class="line">repositories &#123;</div><div class="line">jcenter()</div><div class="line">maven &#123;</div><div class="line">name &apos;glide-snapshot&apos;</div><div class="line">url &apos;http://oss.sonatype.org/content/repositories/snapshots&apos;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">tasks.withType(Javadoc) &#123;</div><div class="line">options.addStringOption(&apos;Xdoclint:none&apos;, &apos;-quiet&apos;)</div><div class="line">options.addStringOption(&apos;encoding&apos;, &apos;UTF-8&apos;)</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task clean(type: Delete) &#123;</div><div class="line">delete rootProject.buildDir</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>###7、配置并应用bintrayUpload.gradle，配置bintray.properties和project.properties</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1814304-5e7a1d909f9dcbe2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620/h/1240" alt="project目录结构"></p>
+<h4 id="7-1-在imagelib-Module的根目录下创建bintrayUpload-gradle文件"><a href="#7-1-在imagelib-Module的根目录下创建bintrayUpload-gradle文件" class="headerlink" title="7.1 在imagelib Module的根目录下创建bintrayUpload.gradle文件"></a>7.1 在imagelib Module的根目录下创建bintrayUpload.gradle文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;com.github.dcendents.android-maven&apos;</div><div class="line">apply plugin: &apos;com.jfrog.bintray&apos;</div><div class="line"></div><div class="line">//加载属性文件</div><div class="line">Properties properties = new Properties()</div><div class="line">File localPropertiesFile = project.file(&quot;bintray.properties&quot;);</div><div class="line">if (localPropertiesFile.exists()) &#123;</div><div class="line">properties.load(localPropertiesFile.newDataInputStream())</div><div class="line">&#125;</div><div class="line">File projectPropertiesFile = project.file(&quot;project.properties&quot;);</div><div class="line">if (projectPropertiesFile.exists()) &#123;</div><div class="line">properties.load(projectPropertiesFile.newDataInputStream())</div><div class="line">&#125;</div><div class="line"></div><div class="line">//读取属性</div><div class="line">def projectRepositoryName = properties.getProperty(&quot;project.repositoryName&quot;)</div><div class="line">def projectName = properties.getProperty(&quot;project.name&quot;)</div><div class="line">def projectGroupId = properties.getProperty(&quot;project.groupId&quot;)</div><div class="line">def projectArtifactId = properties.getProperty(&quot;project.artifactId&quot;)</div><div class="line">def projectVersionName = android.defaultConfig.versionName</div><div class="line">def projectPackaging = properties.getProperty(&quot;project.packaging&quot;)</div><div class="line">def projectSiteUrl = properties.getProperty(&quot;project.siteUrl&quot;)</div><div class="line">def projectGitUrl = properties.getProperty(&quot;project.gitUrl&quot;)</div><div class="line">def projectVersionDesc = properties.getProperty(&quot;project.versiondesc&quot;)</div><div class="line">def projectVersionVcsTag = properties.getProperty(&quot;project.versionvcstag&quot;)</div><div class="line"></div><div class="line">def developerId = properties.getProperty(&quot;developer.id&quot;)</div><div class="line">def developerName = properties.getProperty(&quot;developer.name&quot;)</div><div class="line">def developerEmail = properties.getProperty(&quot;developer.email&quot;)</div><div class="line"></div><div class="line">def bintrayUser = properties.getProperty(&quot;bintray.user&quot;)</div><div class="line">def bintrayApikey = properties.getProperty(&quot;bintray.apiKey&quot;)</div><div class="line">def bintrayOrganizationId = properties.getProperty(&quot;bintray.organizationId&quot;);</div><div class="line"></div><div class="line">def javadocName = properties.getProperty(&quot;javadoc.name&quot;)</div><div class="line"></div><div class="line">group = projectGroupId</div><div class="line"></div><div class="line">// 配置生成POM.xml文件的参数</div><div class="line">install &#123;</div><div class="line">repositories.mavenInstaller &#123;</div><div class="line">pom &#123;</div><div class="line">project &#123;</div><div class="line">name projectName</div><div class="line">groupId projectGroupId</div><div class="line">artifactId projectArtifactId</div><div class="line">version projectVersionName</div><div class="line">packaging projectPackaging</div><div class="line">url projectSiteUrl</div><div class="line">licenses &#123;</div><div class="line">license &#123;</div><div class="line">name &apos;The Apache Software License, Version 2.0&apos;</div><div class="line">url &apos;http://www.apache.org/licenses/LICENSE-2.0.txt&apos;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">developers &#123;</div><div class="line">developer &#123;</div><div class="line">id developerId</div><div class="line">name developerName</div><div class="line">email developerEmail</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">scm &#123;</div><div class="line">connection projectGitUrl</div><div class="line">developerConnection projectGitUrl</div><div class="line">url projectSiteUrl</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//生成sources.jar</div><div class="line">task sourcesJar(type: Jar) &#123;</div><div class="line">from android.sourceSets.main.java.srcDirs</div><div class="line">classifier = &apos;sources&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">task javadoc(type: Javadoc) &#123;</div><div class="line">source = android.sourceSets.main.java.srcDirs</div><div class="line">classpath += project.files(android.getBootClasspath().join(File.pathSeparator))</div><div class="line">&#125;</div><div class="line"></div><div class="line">//生成javadoc.jar</div><div class="line">task javadocJar(type: Jar, dependsOn: javadoc) &#123;</div><div class="line">classifier = &apos;javadoc&apos;</div><div class="line">from javadoc.destinationDir</div><div class="line">&#125;</div><div class="line"></div><div class="line">artifacts &#123;</div><div class="line">archives javadocJar</div><div class="line">archives sourcesJar</div><div class="line">&#125;</div><div class="line"></div><div class="line">//javadoc的配置</div><div class="line">javadoc &#123;</div><div class="line">options &#123;</div><div class="line">encoding &quot;UTF-8&quot;</div><div class="line">charSet &apos;UTF-8&apos;</div><div class="line">author true</div><div class="line">version projectVersionName</div><div class="line">links &quot;http://docs.oracle.com/javase/7/docs/api&quot;</div><div class="line">title javadocName</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">bintray &#123;</div><div class="line">user = bintrayUser</div><div class="line">key = bintrayApikey</div><div class="line">configurations = [&apos;archives&apos;]</div><div class="line">pkg &#123;</div><div class="line">//userOrg = bintrayOrganizationId</div><div class="line">repo = projectRepositoryName</div><div class="line">name = projectName</div><div class="line">websiteUrl = projectSiteUrl</div><div class="line">vcsUrl = projectGitUrl</div><div class="line">licenses = [&quot;Apache-2.0&quot;]</div><div class="line">publish = true</div><div class="line">version &#123;</div><div class="line">name = projectVersionName</div><div class="line">desc = projectVersionDesc</div><div class="line">vcsTag = projectVersionVcsTag</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="7-2-在imagelib-Module的build-gradle中应用上面创建的bintrayUpload-gradle文件，添加如下代码"><a href="#7-2-在imagelib-Module的build-gradle中应用上面创建的bintrayUpload-gradle文件，添加如下代码" class="headerlink" title="7.2 在imagelib Module的build.gradle中应用上面创建的bintrayUpload.gradle文件，添加如下代码"></a>7.2 在imagelib Module的build.gradle中应用上面创建的bintrayUpload.gradle文件，添加如下代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apply from: &quot;bintrayUpload.gradle&quot;</div></pre></td></tr></table></figure>
+<p>这里注意会遇到一个奇葩问题：</p>
+<blockquote>
+<ul>
+<li>Where:<br>Script ‘/Users/sus/share/ImageLoaderUtil/imagelib/bintrayUpload.gradle’ line: 85<br>*What went wrong:<br>A problem occurred evaluating script.<br>android.compileSdkVersion is missing!</li>
+</ul>
+</blockquote>
+<p>其实就是「 android.compileSdkVersion is missing!」 这个问题很奇葩，需要把<br>apply from: “bintrayUpload.gradle”这句话放在最下面，如下完整文件信息所示，我碰到这个问题的时候是直接把这句话放在apply plugin: ‘com.android.library’的后面了</p>
+<p>完整文件信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;com.android.library&apos;</div><div class="line"></div><div class="line">android &#123;</div><div class="line">compileSdkVersion 24</div><div class="line">buildToolsVersion &apos;25.0.0&apos;</div><div class="line">defaultConfig &#123;</div><div class="line">minSdkVersion 15</div><div class="line">targetSdkVersion 25</div><div class="line">versionCode 1</div><div class="line">versionName &quot;1.0.0&quot;</div><div class="line">testInstrumentationRunner &quot;android.support.test.runner.AndroidJUnitRunner&quot;</div><div class="line">&#125;</div><div class="line">buildTypes &#123;</div><div class="line">release &#123;</div><div class="line">minifyEnabled false</div><div class="line">proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">compile fileTree(include: [&apos;*.jar&apos;], dir: &apos;libs&apos;)</div><div class="line">androidTestCompile(&apos;com.android.support.test.espresso:espresso-core:2.2.2&apos;, &#123;</div><div class="line">exclude group: &apos;com.android.support&apos;, module: &apos;support-annotations&apos;</div><div class="line">&#125;)</div><div class="line">compile &apos;com.android.support:appcompat-v7:24.2.1&apos;</div><div class="line">testCompile &apos;junit:junit:4.12&apos;</div><div class="line">compile &apos;com.android.support:support-v4:24.2.1&apos;</div><div class="line">compile &apos;com.squareup.okhttp3:okhttp:3.4.2&apos;</div><div class="line">compile &apos;com.github.bumptech.glide:glide:3.8.0-SNAPSHOT&apos;</div><div class="line">compile &apos;com.github.bumptech.glide:okhttp-integration:1.5.0-SNAPSHOT&apos;</div><div class="line">&#125;</div><div class="line"></div><div class="line">apply from: &quot;bintrayUpload.gradle&quot;</div></pre></td></tr></table></figure></p>
+<h4 id="7-3-在imagelib-Module的根目录下创建7-1要读取的配置文件"><a href="#7-3-在imagelib-Module的根目录下创建7-1要读取的配置文件" class="headerlink" title="7.3 在imagelib Module的根目录下创建7.1要读取的配置文件"></a>7.3 在imagelib Module的根目录下创建7.1要读取的配置文件</h4><p>创建bintray.properties用于配置bintray和开发者信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#配置bintray账号相关信息</div><div class="line">#bintray用户名,不是登陆邮箱,是个人中心右上角显示的名字</div><div class="line">bintray.user=su2008shuai</div><div class="line">#bintray的ApiKey</div><div class="line">bintray.apiKey=xxxxxxxxxxxxx</div><div class="line"></div><div class="line">#bintray的Organization Id</div><div class="line">#bintray.organizationId=soulrelay</div><div class="line"></div><div class="line"></div><div class="line">#配置开发者信息</div><div class="line">#昵称</div><div class="line">developer.id=sushuai</div><div class="line">#姓名</div><div class="line">developer.name=sushuai</div><div class="line">#邮箱</div><div class="line">developer.email=su2008shuai@gmail.com</div></pre></td></tr></table></figure></p>
+<p>创建project.properties用于配置项目信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#project</div><div class="line">#仓库名称，就是在bintray官网建立的仓库的名称</div><div class="line">project.repositoryName=me</div><div class="line">#项目名称</div><div class="line">project.name=imagelib</div><div class="line">#项目组id</div><div class="line">project.groupId=com.sus.library</div><div class="line">#项目id,一般同project.name</div><div class="line">project.artifactId=imagelib</div><div class="line">#打包类型</div><div class="line">project.packaging=aar</div><div class="line">#项目官方网站地址</div><div class="line">project.siteUrl=https://github.com/soulrelay/ImageLoaderUtil</div><div class="line">#项目git地址</div><div class="line">project.gitUrl=https://github.com/soulrelay/ImageLoaderUtil</div><div class="line">#生成的javadoc名称</div><div class="line">javadoc.name=imagelib</div><div class="line"></div><div class="line">project.versiondesc = 1.0.0 normal</div><div class="line">project.versionvcstag = 1.0.0 tag</div></pre></td></tr></table></figure></p>
+<h4 id="7-4-在Terminal窗口下输入如下指令上传到Bintray"><a href="#7-4-在Terminal窗口下输入如下指令上传到Bintray" class="headerlink" title="7.4 在Terminal窗口下输入如下指令上传到Bintray"></a>7.4 在Terminal窗口下输入如下指令上传到Bintray</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gradlew install</div><div class="line">gradlew bintrayUpload</div></pre></td></tr></table></figure>
+<p>期间可能会碰到如下问题</p>
+<blockquote>
+<ul>
+<li>-bash: gradlew: command not found</li>
+</ul>
+</blockquote>
+<p>解决方案：<br>gradlew is not in your global path. To execute the ‘clean’ task (or any task for that matter) using the gradle wrapper (gradlew) in your project directory in your terminal, specify the current directory with the ‘./‘:</p>
+<blockquote>
+<ul>
+<li>./gradlew clean</li>
+</ul>
+</blockquote>
+<p>Running mac, you also have to do “chmod 755 gradlew” on the file before to make it executable.</p>
+<p>归结起来的话：</p>
+<blockquote>
+<ul>
+<li>chmod 755 gradlew</li>
+<li>./gradlew install</li>
+<li>./gradlew bintrayUpload</li>
+</ul>
+</blockquote>
+<p>若出现BUILD SUCCESSFUL则说明成功上传到了Bintray(有时候在执行./gradlew bintrayUpload的时候报错，但这时去bintray官网查看它也上传成功了，可能是缓存的问题，可以Invalidate Caches or clean restart一下试试)</p>
+<p>###8、添加imagelib Package到JCenter<br>进入到Bintray网站，找到刚才上传的项目，点击右下角的“Add To JCenter”按钮<br>然后填写项目描述点击“Send”提交审核即可（这里可以什么都不干，直接点击Send按钮），如果审核成功，它会给你发送一封站内信（同时你注册的邮箱优也会收到通知，1天之内肯定可以收到通知）通知你。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1814304-f862140619fdecaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="审核成功通知"></p>
+<p>访问这个链接：<a href="https://jcenter.bintray.com/com/sus/library/imagelib/1.0.0/" target="_blank" rel="external">https://jcenter.bintray.com/com/sus/library/imagelib/1.0.0/</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1814304-7a9ef92c5c879d3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jcenter库链接"><br><img src="http://upload-images.jianshu.io/upload_images/1814304-da1865ced355d93c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="审核成功后的包结构"></p>
+<p>###9、其它问题和说明</p>
+<blockquote>
+<ul>
+<li><p>Could not upload to ‘<a href="https://api.bintray.com/content/su2008shuai/me/ImageLoaderUtil/1.0/ImageLoaderUtil/imagelib/1.0/imagelib-1.0-javadoc.jar" target="_blank" rel="external">https://api.bintray.com/content/su2008shuai/me/ImageLoaderUtil/1.0/ImageLoaderUtil/imagelib/1.0/imagelib-1.0-javadoc.jar</a>‘: HTTP/1.1 400 Bad Request [message:Failed to resolve package name]</p>
+</li>
+<li><p>Error:Could not find ImageLoaderUtil.jar (com.sus.library:ImageLoaderUtil:1.0.1).<br>Searched in the following locations:<br><a href="https://jcenter.bintray.com/com/sus/library/ImageLoaderUtil/1.0.1/ImageLoaderUtil-1.0.1.jar" target="_blank" rel="external">https://jcenter.bintray.com/com/sus/library/ImageLoaderUtil/1.0.1/ImageLoaderUtil-1.0.1.jar</a></p>
+</li>
+</ul>
+</blockquote>
+<p>类似上面的问题的原因都是配置不对，bintray.properties和project.properties上的配置一定要和bintray线上的配置一致，否则会报各种找不到xx的问题</p>
+<blockquote>
+<ul>
+<li>我的CSDN博客地址：<a href="http://blog.csdn.net/s003603u" target="_blank" rel="external">http://blog.csdn.net/s003603u</a></li>
+<li>我的GitHub地址：<a href="https://github.com/soulrelay" target="_blank" rel="external">https://github.com/soulrelay</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat_qr.jpg" alt="SuS WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay_qr.jpg" alt="SuS Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Jcenter/" rel="tag">#Jcenter</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/30/基于ToolBar等MD相关控件实现的沉浸式联动效果/" rel="next" title="基于ToolBar等MD相关控件实现的沉浸式联动效果">
+                <i class="fa fa-chevron-left"></i> 基于ToolBar等MD相关控件实现的沉浸式联动效果
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/08/03/发布Library到JCenter，步步为营/"
+           data-title="发布Library到JCenter，步步为营" data-url="http://yoursite.com/2017/08/03/发布Library到JCenter，步步为营/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="SuS" />
+          <p class="site-author-name" itemprop="name">SuS</p>
+          <p class="site-description motion-element" itemprop="description">手掌一散，流落走多少时光</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulrelay" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/s003603u" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-csdn"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-在imagelib-Module的根目录下创建bintrayUpload-gradle文件"><span class="nav-number">1.</span> <span class="nav-text">7.1 在imagelib Module的根目录下创建bintrayUpload.gradle文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-在imagelib-Module的build-gradle中应用上面创建的bintrayUpload-gradle文件，添加如下代码"><span class="nav-number">2.</span> <span class="nav-text">7.2 在imagelib Module的build.gradle中应用上面创建的bintrayUpload.gradle文件，添加如下代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-在imagelib-Module的根目录下创建7-1要读取的配置文件"><span class="nav-number">3.</span> <span class="nav-text">7.3 在imagelib Module的根目录下创建7.1要读取的配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-4-在Terminal窗口下输入如下指令上传到Bintray"><span class="nav-number">4.</span> <span class="nav-text">7.4 在Terminal窗口下输入如下指令上传到Bintray</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SuS</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulrelay"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
