@@ -84,14 +84,14 @@
 
 
 
-<meta name="description" content="前言关于Android View事件分发机制的一个小结，基于他人分析以及个人理解，方便自己记录以及回忆，使用了一些UML图和流程图对部分流程进行了细化，并加入了自己的理解，期间参考了几篇比较优秀（不同博文可能针对的Android代码版本不同，存在些许出入，但是大致逻辑一致）的关于事件分发机制的博文，已在参考链接中列出。
-该篇博文更适合那些对事件分发机制基本了解但是仍然缺少一个系统化轮廓的朋友，只是">
+<meta name="description" content="前言关于Android View事件分发机制的一个小结，基于他人分析以及个人理解，方便自己记录以及回忆，使用了一些UML图和流程图对部分流程进行了细化，并加入了自己的理解，期间参考了几篇比较优秀（不同博文可能针对的Android代码版本不同，存在些许出入，但是大致逻辑一致）的关于事件分发机制的博文，已在参考链接中列出。 该篇博文更适合那些对事件分发机制基本了解但是仍然缺少一个系统化轮廓的朋友，只是">
+<meta name="keywords" content="View">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android View的事件分发机制">
 <meta property="og:url" content="http://yoursite.com/2016/07/29/Android View的事件分发机制/index.html">
-<meta property="og:site_name" content="SuS's Blog">
-<meta property="og:description" content="前言关于Android View事件分发机制的一个小结，基于他人分析以及个人理解，方便自己记录以及回忆，使用了一些UML图和流程图对部分流程进行了细化，并加入了自己的理解，期间参考了几篇比较优秀（不同博文可能针对的Android代码版本不同，存在些许出入，但是大致逻辑一致）的关于事件分发机制的博文，已在参考链接中列出。
-该篇博文更适合那些对事件分发机制基本了解但是仍然缺少一个系统化轮廓的朋友，只是">
+<meta property="og:site_name" content="SuS&#39;s Blog">
+<meta property="og:description" content="前言关于Android View事件分发机制的一个小结，基于他人分析以及个人理解，方便自己记录以及回忆，使用了一些UML图和流程图对部分流程进行了细化，并加入了自己的理解，期间参考了几篇比较优秀（不同博文可能针对的Android代码版本不同，存在些许出入，但是大致逻辑一致）的关于事件分发机制的博文，已在参考链接中列出。 该篇博文更适合那些对事件分发机制基本了解但是仍然缺少一个系统化轮廓的朋友，只是">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20160729153418582">
 <meta property="og:image" content="http://img.blog.csdn.net/20160729153432350">
 <meta property="og:image" content="http://img.blog.csdn.net/20160729153447488">
@@ -99,8 +99,7 @@
 <meta property="og:updated_time" content="2016-08-02T03:03:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android View的事件分发机制">
-<meta name="twitter:description" content="前言关于Android View事件分发机制的一个小结，基于他人分析以及个人理解，方便自己记录以及回忆，使用了一些UML图和流程图对部分流程进行了细化，并加入了自己的理解，期间参考了几篇比较优秀（不同博文可能针对的Android代码版本不同，存在些许出入，但是大致逻辑一致）的关于事件分发机制的博文，已在参考链接中列出。
-该篇博文更适合那些对事件分发机制基本了解但是仍然缺少一个系统化轮廓的朋友，只是">
+<meta name="twitter:description" content="前言关于Android View事件分发机制的一个小结，基于他人分析以及个人理解，方便自己记录以及回忆，使用了一些UML图和流程图对部分流程进行了细化，并加入了自己的理解，期间参考了几篇比较优秀（不同博文可能针对的Android代码版本不同，存在些许出入，但是大致逻辑一致）的关于事件分发机制的博文，已在参考链接中列出。 该篇博文更适合那些对事件分发机制基本了解但是仍然缺少一个系统化轮廓的朋友，只是">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20160729153418582">
 
 
