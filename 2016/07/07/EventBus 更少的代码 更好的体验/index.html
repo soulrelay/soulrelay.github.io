@@ -1,172 +1,119 @@
-<!DOCTYPE html>
-<html class="full-height">
+<!DOCTYPE HTML>
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-  
-  <title>EventBus 更少的代码 更好的体验 | SuS&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC] 简介事件总线库，极大地简化了 Activities, Fragments, Threads, Services等各组件之间的通信。更少的代码，更好的体检EventBus的github地址 优点  简化组件之间的通信,对事件的发送者和接收者进行解耦;在Activity、Fragment、以及后台线程中运转良好;避免复杂和容易出错的依赖关系以及生命周期问题 使你的代码更简单，代码可读性更好">
-<meta name="keywords" content="EventBus,事件总线库">
-<meta property="og:type" content="article">
-<meta property="og:title" content="EventBus 更少的代码 更好的体验">
-<meta property="og:url" content="http://yoursite.com/2016/07/07/EventBus 更少的代码 更好的体验/index.html">
-<meta property="og:site_name" content="SuS&#39;s Blog">
-<meta property="og:description" content="[TOC] 简介事件总线库，极大地简化了 Activities, Fragments, Threads, Services等各组件之间的通信。更少的代码，更好的体检EventBus的github地址 优点  简化组件之间的通信,对事件的发送者和接收者进行解耦;在Activity、Fragment、以及后台线程中运转良好;避免复杂和容易出错的依赖关系以及生命周期问题 使你的代码更简单，代码可读性更好">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.blog.csdn.net/20160707183142111">
-<meta property="og:image" content="http://img.blog.csdn.net/20160707180921690">
-<meta property="og:image" content="http://img.blog.csdn.net/20160707181044504">
-<meta property="og:image" content="http://img.blog.csdn.net/20160707160724357">
-<meta property="og:image" content="http://img.blog.csdn.net/20160707160737444">
-<meta property="og:image" content="http://img.blog.csdn.net/20160707160752467">
-<meta property="og:image" content="http://img.blog.csdn.net/20160707182411945">
-<meta property="og:image" content="http://img.blog.csdn.net/20160707165447744">
-<meta property="og:image" content="http://img.blog.csdn.net/20160707180337042">
-<meta property="og:updated_time" content="2016-07-07T10:49:40.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EventBus 更少的代码 更好的体验">
-<meta name="twitter:description" content="[TOC] 简介事件总线库，极大地简化了 Activities, Fragments, Threads, Services等各组件之间的通信。更少的代码，更好的体检EventBus的github地址 优点  简化组件之间的通信,对事件的发送者和接收者进行解耦;在Activity、Fragment、以及后台线程中运转良好;避免复杂和容易出错的依赖关系以及生命周期问题 使你的代码更简单，代码可读性更好">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20160707183142111">
-  
-    <link rel="alternate" href="/atom.xml" title="SuS&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/common.css">
-<link rel="stylesheet" href="/css/nav.css">
-<link rel="stylesheet" href="/css/layout.css">
-  
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	 <link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			
+    <title>
+    SuS's Blog
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
 
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
 </head>
+    
+		
+<!-- Layouts -->
 
-<body>
-  <header id="navbar" class="overflow-hidden">
-  <div class="container">
-    <nav class="nav">
-         <div class="nav-left">
-            <a href="/" class="nav-item" style="font-size: 20px;">
-              <span class="logo">Diskobólos</span>'s Blog
-            </a>
-         </div>
-        <div class="nav-center is-hidden position-relative" id="search_container">
-            <div class="nav-item full-width full-height">
-                <i class="fa fa-search has-padding" aria-hidden="true"></i>
-                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
-                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
-            </div>
-            <div id="search_result"></div>
-        </div>
-        <div class="nav-right nav-menu">
-            <a class="nav-item" id="search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </a>
-            
-            <a class="nav-item" href="/">
-                Home
-            </a>
-            
-            <a class="nav-item" href="/works">
-                My Works
-            </a>
-            
-            <a class="nav-item" href="/about">
-                About
-            </a>
-            
-        </div>
-        <span class="nav-toggle" id="navMenuDropdown">
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
-        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
-            
-            <a class="nav-item flex-1" href="/">
-                Home
-            </a>
-            
-            <a class="nav-item flex-1" href="/works">
-                My Works
-            </a>
-            
-            <a class="nav-item flex-1" href="/about">
-                About
-            </a>
-            
-        </div>
-    </nav>
-  </div>
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_solarized.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">MICCALL</a>
 </header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/Android/">Android</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
 
-  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
-      <div class="main-inner-content">
-          <!--博文页面-->
 
-<style>
-    .header-box {
-        height: 370px;
-        filter: blur(10px);
-        background-size: cover;
-        background-color: lightsteelblue;
-    }
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
 
-    .post-box {
-        padding: 15px;
-        padding-top: 60px;
-        min-height: 80vh;
-        margin-top: -200px;
-        border-radius: 4px;
-        background-color: rgba(255,255,255,.8);
-    }
-
-    .post-avatar {
-        height: 30px;
-        width: 30px;
-        border-radius: 50%;
-    }
-
-    .flow-chart {
-        text-align: center;
-    }
-
-    img[alt="post-cover"] {
-        display: none;
-    }
-</style>
-<header>
-    <div id="header_box" class="header-box"></div>
-</header>
-<section>
-    <div class="container post-box">
-        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
-            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
-                <strong>EventBus 更少的代码 更好的体验</strong>
-            </h1>
-            
-            <div class="is-flex align-center">
-                <img class="post-avatar" src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-shadow-circle-512.png">
-                <span style="padding:0 10px;"> <span class="sub-title">By</span> Diskobólos</span>
-                <span class="post-date sub-title">at: 2016-07-07</span>
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >EventBus 更少的代码 更好的体验</h2></a>
             </div>
-            
-                <div>
-                    
-                         <a class="tag is-post-tag" href="/tags/EventBus/">EventBus</a>
-                    
-                         <a class="tag is-post-tag" href="/tags/事件总线库/">事件总线库</a>
-                    
-                </div>
-            
-        </div>
-        <div class="content" style="overflow: auto">
-            <p>[TOC]</p>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>[TOC]</p>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a><font color="#C4573C" size="5" face="黑体">简介</font></h2><p>事件总线库，极大地简化了 Activities, Fragments, Threads, Services等各组件之间的通信。更少的代码，更好的体检<br><img src="http://img.blog.csdn.net/20160707183142111" alt="这里写图片描述"><br>EventBus的<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">github地址</a></p>
 <h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a><font color="#C4573C" size="5" face="黑体">优点</font></h2><blockquote>
 <ul>
@@ -209,71 +156,108 @@
 <center><br><img src="http://img.blog.csdn.net/20160707182411945" alt="这里写图片描述"><br></center><br>## <font color="#C4573C" size="5" face="黑体">相关介绍</font><br><br>### <font color="#C4573C" size="4" face="黑体">线程模型</font><br><br>主要包括如下四种：<br><img src="http://img.blog.csdn.net/20160707165447744" alt="这里写图片描述"><br><br><strong>POSTING</strong>：<br>&gt; <em> 发布事件和接收事件在同一个线程<br>&gt; </em> 避免执行耗时操作，否则会阻塞事件的传递，有可能会引起ANR<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Subscribe</span>(threadMode = ThreadMode.POSTING) <span class="comment">// ThreadMode is optional here</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(MessageEvent event)</span> </span>&#123;</div><div class="line">    log(event.message);</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><strong>MAIN</strong>：<br>&gt; <em> 无论事件从哪里发布，接收事件都在UI线程<br>&gt; </em> 可以用来更新UI，但是不能处理耗时操作<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Called in Android UI's main thread</span></div><div class="line"><span class="meta">@Subscribe</span>(threadMode = ThreadMode.MAIN)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(MessageEvent event)</span> </span>&#123;</div><div class="line">    textField.setText(event.message);</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><strong>BACKGROUND</strong>:<br>&gt; <em> 发布事件来自主线程，接收事件则在新的线程中运行；发布事件来自子线 程，接收事件也在该子线程完成<br>&gt; </em> 禁止进行UI更新操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Called in the background thread</span></div><div class="line"><span class="meta">@Subscribe</span>(threadMode = ThreadMode.BACKGROUND)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(MessageEvent event)</span></span>&#123;</div><div class="line">    saveToDisk(event.message);</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><strong>ASYNC</strong>：<br>&gt; <em> 无论事件从哪里发布，接收事件都在新的子线程<br>&gt; </em> 禁止进行UI更新操作<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Called in a separate thread</span></div><div class="line"><span class="meta">@Subscribe</span>(threadMode = ThreadMode.ASYNC)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(MessageEvent event)</span></span>&#123;</div><div class="line">    backend.send(event.message);</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br>### <font color="#C4573C" size="4" face="黑体">订阅优先级以及事件取消</font><br><br>尽管大多数情况下eventbus是不需要设置订阅的优先级和事件取消，但是某些特殊的场景可能派上用场。例如，当应用程序在前台，存在一个事件可能会触发一些用户界面相关逻辑，但当应用不可见时应该有不同的反应<br><br><strong>优先级设置</strong>:<br>&gt; <em> 默认优先级是0，同样的线程分发模式，优先级更高的订阅者会先收到消息<br>&gt; </em> 不同线程模式的订阅者接收消息的顺序呢不受优先级影响<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Subscribe</span>(priority = <span class="number">1</span>);</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEvent</span><span class="params">(MessageEvent event)</span> </span>&#123;</div><div class="line">…</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br><strong>事件取消</strong>：<br>&gt; <em> 事件取消一般都是被高优先级的订阅者调用<br>&gt; </em> 严格限制在线程模式为POSTING的消息处理方法中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Called in the same thread (default)</span></div><div class="line"><span class="meta">@Subscribe</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEvent</span><span class="params">(MessageEvent event)</span></span>&#123;</div><div class="line"><span class="comment">// Process the event</span></div><div class="line">…</div><div class="line"></div><div class="line">EventBus.getDefault().cancelEventDelivery(event) ;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br>### <font color="#C4573C" size="4" face="黑体">粘性事件</font><br>EventBus还支持发送黏性事件，就是在发送事件之后再订阅该事件也能收到该事件，能够收到订阅之前发送的消息。但是它只能收到最新的一次消息。<br><br>这里不做过多介绍，详情请参考<a href="http://greenrobot.org/eventbus/documentation/configuration/sticky-events/" target="_blank" rel="external">Sticky Events</a><br><br>## <font color="#C4573C" size="5" face="黑体">总结</font><br><br>&gt;<em> 简单强大<br>&gt;</em> 实战验证<br>&gt;<em> 高性能<br>&gt;</em> 基于API的简洁注解<br>&gt;<em> 主线程和子线程均可进行消息发布和订阅<br>&gt;</em> 事件以及订阅者继承特点<br>&gt;* 零配置且可配<br><br>码字！排版！画图！终于写完了！<br><center><br><img src="http://img.blog.csdn.net/20160707180337042" alt="这里写图片描述"><br></center>
 
 
-        </div>
-        <div class="post-reply">
+            </div>
+
+            <!-- Post Comments -->
             
-                <!-- 来必力City版安装代码 -->
-                <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE4Ni81NzUz">
-                    <script type="text/javascript">
-                        (function(d, s) {
-                            var j, e = d.getElementsByTagName(s)[0];
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
 
-                            if (typeof LivereTower === 'function') { return; }
-
-                            j = d.createElement(s);
-                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                            j.async = true;
-
-                            e.parentNode.insertBefore(j, e);
-                        })(document, 'script');
-                    </script>
-                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-                </div>
-                <!-- City版安装代码已完成 -->
-            
-            
-        </div>
-    </div>
-</section>
-<script>
-    // 获取第一张图, 用以当封面背景图
-    var img = document.querySelectorAll('img')[1]
-
-    if (img) {
-        var header_box = document.querySelector('#header_box')
-        header_box.style.backgroundImage = 'url('+ img.src +')'
-    }
-</script>
-      </div>
-  </div>
-  <style>
-  #footer {
-    min-height: 10vh;
-    background: black;
-    color: #fff;
-  }
-
-  #footer a {
-    color: #e1e1e1;
-  }
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
 </style>
-<footer id="footer" class="has-text-centered is-flex center">
-  <div class="container has-padding">
-    <div>
-      <div>
-        <!--请您保留作者署名, 主题制作来之不易-->
-        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
-        <br>
-        Copyright © SuS 2017
-        <br>
-        Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
-      </div>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2016/07/07/EventBus 更少的代码 更好的体验/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2016/07/07/EventBus 更少的代码 更好的体验/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
     </div>
-  </div>
-</footer>
-
-<script src="/js/search_core.js"></script>
-<script src="/js/script.js"></script>
-
 </body>
+
+
+
+ 	
 </html>

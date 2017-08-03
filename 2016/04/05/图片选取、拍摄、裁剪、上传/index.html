@@ -1,163 +1,119 @@
-<!DOCTYPE html>
-<html class="full-height">
+<!DOCTYPE HTML>
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-  
-  <title>图片选取、拍摄、裁剪、上传 | SuS&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC] 图片上传效果图展示        图片上传前的准备带圆角的方形图片使用的第三方控件，主要关注如下一些文件   RoundedDrawable RoundedImageView RoundedTransformationBuilder res目录下的anim、color以及values下的attrs   布局文件代码如下：123456789101112131415161718192021">
-<meta name="keywords" content="view">
-<meta property="og:type" content="article">
-<meta property="og:title" content="图片选取、拍摄、裁剪、上传">
-<meta property="og:url" content="http://yoursite.com/2016/04/05/图片选取、拍摄、裁剪、上传/index.html">
-<meta property="og:site_name" content="SuS&#39;s Blog">
-<meta property="og:description" content="[TOC] 图片上传效果图展示        图片上传前的准备带圆角的方形图片使用的第三方控件，主要关注如下一些文件   RoundedDrawable RoundedImageView RoundedTransformationBuilder res目录下的anim、color以及values下的attrs   布局文件代码如下：123456789101112131415161718192021">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.blog.csdn.net/20151230201831003">
-<meta property="og:image" content="http://img.blog.csdn.net/20151230201757163">
-<meta property="og:updated_time" content="2016-04-05T05:53:54.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图片选取、拍摄、裁剪、上传">
-<meta name="twitter:description" content="[TOC] 图片上传效果图展示        图片上传前的准备带圆角的方形图片使用的第三方控件，主要关注如下一些文件   RoundedDrawable RoundedImageView RoundedTransformationBuilder res目录下的anim、color以及values下的attrs   布局文件代码如下：123456789101112131415161718192021">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20151230201831003">
-  
-    <link rel="alternate" href="/atom.xml" title="SuS&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/common.css">
-<link rel="stylesheet" href="/css/nav.css">
-<link rel="stylesheet" href="/css/layout.css">
-  
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	 <link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			
+    <title>
+    SuS's Blog
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
 
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
 </head>
+    
+		
+<!-- Layouts -->
 
-<body>
-  <header id="navbar" class="overflow-hidden">
-  <div class="container">
-    <nav class="nav">
-         <div class="nav-left">
-            <a href="/" class="nav-item" style="font-size: 20px;">
-              <span class="logo">Diskobólos</span>'s Blog
-            </a>
-         </div>
-        <div class="nav-center is-hidden position-relative" id="search_container">
-            <div class="nav-item full-width full-height">
-                <i class="fa fa-search has-padding" aria-hidden="true"></i>
-                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
-                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
-            </div>
-            <div id="search_result"></div>
-        </div>
-        <div class="nav-right nav-menu">
-            <a class="nav-item" id="search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </a>
-            
-            <a class="nav-item" href="/">
-                Home
-            </a>
-            
-            <a class="nav-item" href="/works">
-                My Works
-            </a>
-            
-            <a class="nav-item" href="/about">
-                About
-            </a>
-            
-        </div>
-        <span class="nav-toggle" id="navMenuDropdown">
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
-        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
-            
-            <a class="nav-item flex-1" href="/">
-                Home
-            </a>
-            
-            <a class="nav-item flex-1" href="/works">
-                My Works
-            </a>
-            
-            <a class="nav-item flex-1" href="/about">
-                About
-            </a>
-            
-        </div>
-    </nav>
-  </div>
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_solarized.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">MICCALL</a>
 </header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/Android/">Android</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
 
-  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
-      <div class="main-inner-content">
-          <!--博文页面-->
 
-<style>
-    .header-box {
-        height: 370px;
-        filter: blur(10px);
-        background-size: cover;
-        background-color: lightsteelblue;
-    }
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
 
-    .post-box {
-        padding: 15px;
-        padding-top: 60px;
-        min-height: 80vh;
-        margin-top: -200px;
-        border-radius: 4px;
-        background-color: rgba(255,255,255,.8);
-    }
-
-    .post-avatar {
-        height: 30px;
-        width: 30px;
-        border-radius: 50%;
-    }
-
-    .flow-chart {
-        text-align: center;
-    }
-
-    img[alt="post-cover"] {
-        display: none;
-    }
-</style>
-<header>
-    <div id="header_box" class="header-box"></div>
-</header>
-<section>
-    <div class="container post-box">
-        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
-            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
-                <strong>图片选取、拍摄、裁剪、上传</strong>
-            </h1>
-            
-            <div class="is-flex align-center">
-                <img class="post-avatar" src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-shadow-circle-512.png">
-                <span style="padding:0 10px;"> <span class="sub-title">By</span> Diskobólos</span>
-                <span class="post-date sub-title">at: 2016-04-05</span>
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >图片选取、拍摄、裁剪、上传</h2></a>
             </div>
-            
-                <div>
-                    
-                         <a class="tag is-post-tag" href="/tags/view/">view</a>
-                    
-                </div>
-            
-        </div>
-        <div class="content" style="overflow: auto">
-            <p>[TOC]</p>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>[TOC]</p>
 <h1 id="图片上传"><a href="#图片上传" class="headerlink" title="图片上传"></a>图片上传</h1><h2 id="效果图展示"><a href="#效果图展示" class="headerlink" title="效果图展示"></a>效果图展示</h2><p><img src="http://img.blog.csdn.net/20151230201831003" alt="Drawing" width="300px">       <img src="http://img.blog.csdn.net/20151230201757163" alt="Drawing" width="300px"></p>
 <h2 id="图片上传前的准备"><a href="#图片上传前的准备" class="headerlink" title="图片上传前的准备"></a>图片上传前的准备</h2><h3 id="带圆角的方形图片"><a href="#带圆角的方形图片" class="headerlink" title="带圆角的方形图片"></a>带圆角的方形图片</h3><p>使用的第三方控件，主要关注如下一些文件</p>
 <blockquote>
@@ -177,7 +133,7 @@
 </ul>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CoverSelelctPopupWindow</span> <span class="keyword">extends</span> <span class="title">PopupWindow</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Button albumBtn, photoGraphBtn,cancelBtn;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> View mMenuView;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CoverSelelctPopupWindow</span><span class="params">(Activity context, OnClickListener itemsOnClick)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context);</div><div class="line">        LayoutInflater inflater = (LayoutInflater) context</div><div class="line">                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);</div><div class="line">        mMenuView = inflater.inflate(R.layout.cover_select_pop_layout, <span class="keyword">null</span>);</div><div class="line">        albumBtn = (Button) mMenuView.findViewById(R.id.btn_album);</div><div class="line">        photoGraphBtn = (Button) mMenuView.findViewById(R.id.btn_photo_graph);</div><div class="line">        <span class="comment">//startRecordBtn = (Button) mMenuView.findViewById(R.id.btn_upload_record);</span></div><div class="line">        cancelBtn = (Button) mMenuView.findViewById(R.id.btn_cancel_join);</div><div class="line">        <span class="comment">// 设置按钮监听</span></div><div class="line">        albumBtn.setOnClickListener(itemsOnClick);</div><div class="line">        photoGraphBtn.setOnClickListener(itemsOnClick);</div><div class="line"></div><div class="line">        <span class="comment">// 设置SelectPicPopupWindow的View</span></div><div class="line">        <span class="keyword">this</span>.setContentView(mMenuView);</div><div class="line">        <span class="comment">// 设置SelectPicPopupWindow弹出窗体的宽</span></div><div class="line">        <span class="keyword">this</span>.setWidth(LayoutParams.FILL_PARENT);</div><div class="line">        <span class="comment">// 设置SelectPicPopupWindow弹出窗体的高</span></div><div class="line">        <span class="keyword">this</span>.setHeight(LayoutParams.WRAP_CONTENT);</div><div class="line">        <span class="comment">// 设置SelectPicPopupWindow弹出窗体可点击</span></div><div class="line">        <span class="keyword">this</span>.setFocusable(<span class="keyword">true</span>);</div><div class="line">        <span class="comment">// 设置SelectPicPopupWindow弹出窗体动画效果</span></div><div class="line">        <span class="keyword">this</span>.setAnimationStyle(R.style.AnimBottom);</div><div class="line">        <span class="comment">// 实例化一个ColorDrawable颜色为半透明</span></div><div class="line">        ColorDrawable dw = <span class="keyword">new</span> ColorDrawable(<span class="number">0x00FFFFFF</span>);</div><div class="line">        <span class="comment">// 设置SelectPicPopupWindow弹出窗体的背景</span></div><div class="line">        <span class="keyword">this</span>.setBackgroundDrawable(dw);</div><div class="line">        <span class="comment">// mMenuView添加OnTouchListener监听判断获取触屏位置如果在选择框外面则销毁弹出框</span></div><div class="line">        mMenuView.setOnTouchListener(<span class="keyword">new</span> OnTouchListener() &#123;</div><div class="line"></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouch</span><span class="params">(View v, MotionEvent event)</span> </span>&#123;</div><div class="line"></div><div class="line">                <span class="keyword">int</span> height = mMenuView.findViewById(R.id.pop_layout).getTop();</div><div class="line">                <span class="keyword">int</span> y = (<span class="keyword">int</span>) event.getY();</div><div class="line">                <span class="keyword">if</span> (event.getAction() == MotionEvent.ACTION_UP) &#123;</div><div class="line">                    <span class="keyword">if</span> (y &lt; height) &#123;</div><div class="line">                        dismiss();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        cancelBtn.setOnClickListener(<span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                dismiss();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>布局文件：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:gravity</span>=<span class="string">"center_horizontal"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> &gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/pop_layout"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"175dp"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"@color/f33e363d"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:gravity</span>=<span class="string">"center_horizontal"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> &gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn_album"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginLeft</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginRight</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginTop</span>=<span class="string">"16dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textSize</span>=<span class="string">"14sp"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@drawable/btn_report_selector"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"@string/user_info_photo_album"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textColor</span>=<span class="string">"@color/_3e363d"</span> /&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn_photo_graph"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginLeft</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginRight</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginTop</span>=<span class="string">"8dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textSize</span>=<span class="string">"14sp"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@drawable/btn_report_selector"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"@string/user_info_photo_camera"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textColor</span>=<span class="string">"@color/_3e363d"</span> /&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn_cancel_join"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginTop</span>=<span class="string">"16dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginLeft</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginRight</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textSize</span>=<span class="string">"14sp"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@drawable/btn_report_selector"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"@string/join_cancel_txt"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textColor</span>=<span class="string">"@color/_6f6a6f"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>布局文件：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:gravity</span>=<span class="string">"center_horizontal"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> &gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></div><div class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/pop_layout"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"175dp"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"@color/f33e363d"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:gravity</span>=<span class="string">"center_horizontal"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> &gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn_album"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginLeft</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginRight</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginTop</span>=<span class="string">"16dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textSize</span>=<span class="string">"14sp"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@drawable/btn_report_selector"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"@string/user_info_photo_album"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textColor</span>=<span class="string">"@color/_3e363d"</span> /&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn_photo_graph"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginLeft</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginRight</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginTop</span>=<span class="string">"8dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textSize</span>=<span class="string">"14sp"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@drawable/btn_report_selector"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"@string/user_info_photo_camera"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textColor</span>=<span class="string">"@color/_3e363d"</span> /&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/btn_cancel_join"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"fill_parent"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginTop</span>=<span class="string">"16dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginLeft</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:layout_marginRight</span>=<span class="string">"20dip"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textSize</span>=<span class="string">"14sp"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@drawable/btn_report_selector"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"@string/join_cancel_txt"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:textColor</span>=<span class="string">"@color/_6f6a6f"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <h2 id="通过拍照以及相册获取图片"><a href="#通过拍照以及相册获取图片" class="headerlink" title="通过拍照以及相册获取图片"></a>通过拍照以及相册获取图片</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">android</span>.<span class="title">view</span>.<span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> RoundedImageView imgCover;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> TextView addCover;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> CoverSelelctPopupWindow coverSelelctPopupWindow;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ACTIVITY_ALBUM_REQUESTCODE = <span class="number">2000</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ACTIVITY_CAMERA_REQUESTCODE = <span class="number">2001</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ACTIVITY_MODIFY_PHOTO_REQUESTCODE = <span class="number">2002</span>;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        initViews();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initViews</span><span class="params">()</span> </span>&#123;</div><div class="line">        imgCover = (RoundedImageView) <span class="keyword">this</span>.findViewById(R.id.imageCover);</div><div class="line">        addCover = (TextView) <span class="keyword">this</span>.findViewById(R.id.add_cover_txt);</div><div class="line">        imgCover.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">        addCover.setOnClickListener(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (v.getId()) &#123;</div><div class="line">            <span class="keyword">case</span> R.id.imageCover:</div><div class="line">            <span class="keyword">case</span> R.id.add_cover_txt:</div><div class="line">                coverSelelctPopupWindow = <span class="keyword">new</span> CoverSelelctPopupWindow(<span class="keyword">this</span>, itemsOnClick);</div><div class="line">                coverSelelctPopupWindow.showAtLocation(findViewById(R.id.add_cover_txt), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">//设置layout在PopupWindow中显示的位置</span></div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 为弹出窗口实现监听类</span></div><div class="line">    <span class="keyword">private</span> OnClickListener itemsOnClick = <span class="keyword">new</span> OnClickListener() &#123;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">            coverSelelctPopupWindow.dismiss();</div><div class="line">            <span class="keyword">if</span> (CommonUtils.isFastDoubleClick()) &#123;</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">switch</span> (v.getId()) &#123;</div><div class="line">                <span class="keyword">case</span> R.id.btn_album:</div><div class="line">                    Intent i = <span class="keyword">new</span> Intent(Intent.ACTION_PICK, <span class="keyword">null</span>);<span class="comment">// 调用android的图库</span></div><div class="line">                    i.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, <span class="string">"image/*"</span>);</div><div class="line">                    startActivityForResult(i, ACTIVITY_ALBUM_REQUESTCODE);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line"></div><div class="line">                <span class="keyword">case</span> R.id.btn_photo_graph:</div><div class="line">                    <span class="keyword">if</span> (CommonUtils.isExistCamera(MainActivity.<span class="keyword">this</span>)) &#123;</div><div class="line">                        Intent intent = <span class="keyword">new</span> Intent(MediaStore.ACTION_IMAGE_CAPTURE);<span class="comment">// 调用android自带的照相机</span></div><div class="line">                        Uri imageUri = Uri.fromFile(FileUtil.getHeadPhotoFileRaw());</div><div class="line">                        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);</div><div class="line">                        intent.putExtra(MediaStore.Images.Media.ORIENTATION, <span class="number">0</span>);</div><div class="line">                        startActivityForResult(intent, ACTIVITY_CAMERA_REQUESTCODE);</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        Toast.makeText(MainActivity.<span class="keyword">this</span>,</div><div class="line">                                getResources().getString(R.string.user_no_camera),</div><div class="line">                                Toast.LENGTH_SHORT).show();</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onActivityResult(requestCode, resultCode, data);</div><div class="line">        <span class="keyword">switch</span> (requestCode) &#123;</div><div class="line">            <span class="keyword">case</span> ACTIVITY_ALBUM_REQUESTCODE:</div><div class="line">                <span class="keyword">if</span> (resultCode == Activity.RESULT_OK) &#123;</div><div class="line">                    <span class="keyword">if</span>(data.getData() == <span class="keyword">null</span>)&#123;</div><div class="line">                        ToastUtils.toast(<span class="keyword">this</span>, getString(R.string.pic_not_valid));</div><div class="line">                        <span class="keyword">return</span>;</div><div class="line">                    &#125;</div><div class="line">                    CommonUtils.cutPhoto(<span class="keyword">this</span>, data.getData(), <span class="keyword">true</span>);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> ACTIVITY_CAMERA_REQUESTCODE:</div><div class="line">                <span class="keyword">if</span> (resultCode == Activity.RESULT_OK) &#123;</div><div class="line">                    BitmapFactory.Options bitmapOptions = <span class="keyword">new</span> BitmapFactory.Options();</div><div class="line">                    bitmapOptions.inSampleSize = <span class="number">2</span>;</div><div class="line">                    <span class="keyword">int</span> degree = FileUtil.readPictureDegree(FileUtil.getHeadPhotoDir() + FileUtil.HEADPHOTO_NAME_RAW);</div><div class="line">                    Bitmap cameraBitmap = BitmapFactory.decodeFile(FileUtil.getHeadPhotoDir() + FileUtil.HEADPHOTO_NAME_RAW, bitmapOptions);</div><div class="line">                    cameraBitmap = FileUtil.rotaingImageView(degree, cameraBitmap);</div><div class="line">                    FileUtil.saveCutBitmapForCache(<span class="keyword">this</span>,cameraBitmap);</div><div class="line">                    CommonUtils.cutPhoto(<span class="keyword">this</span>, Uri.fromFile(FileUtil.getHeadPhotoFileRaw()), <span class="keyword">true</span>);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> ACTIVITY_MODIFY_PHOTO_REQUESTCODE:</div><div class="line"><span class="comment">//                Bundle bundle = data.getExtras();</span></div><div class="line"><span class="comment">//                if (bundle != null) &#123;</span></div><div class="line"><span class="comment">//                    Bitmap bitmap = bundle.getParcelable("data");</span></div><div class="line"><span class="comment">//                    if (bitmap == null) &#123;</span></div><div class="line"><span class="comment">//                        return;</span></div><div class="line"><span class="comment">//                    &#125;</span></div><div class="line"><span class="comment">//                    headImg.setImageBitmap(bitmap);</span></div><div class="line"><span class="comment">//                &#125;</span></div><div class="line">                String coverPath = FileUtil.getHeadPhotoDir()  + FileUtil.HEADPHOTO_NAME_TEMP;</div><div class="line">                Bitmap bitmap = BitmapFactory.decodeFile(coverPath);</div><div class="line">                imgCover.setImageBitmap(bitmap);</div><div class="line">                <span class="comment">//接下来是完成上传功能</span></div><div class="line">               <span class="comment">/* HttpUtil.uploadCover(this, UrlContainer.UP_LIVE_COVER + "?uid="</span></div><div class="line"><span class="comment">                        + LoginUtils.getInstance(this), coverPath, this);*/</span></div><div class="line">                <span class="comment">//成功之后删除临时图片</span></div><div class="line">                FileUtil.deleteTempAndRaw();</div><div class="line"></div><div class="line">                <span class="keyword">break</span>;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="拍照获取图片失败的问题"><a href="#拍照获取图片失败的问题" class="headerlink" title="拍照获取图片失败的问题"></a>拍照获取图片失败的问题</h2><p>过程中发现，如果拍照获取图片的存储路径与裁切后存储的路径一致的话会出现问题，所以分别设置了两个路径，请参考</p>
 <blockquote>
@@ -199,71 +155,108 @@
 <h2 id="图片上传以及上传之后的处理"><a href="#图片上传以及上传之后的处理" class="headerlink" title="图片上传以及上传之后的处理"></a>图片上传以及上传之后的处理</h2><p>大家可以在自己的网络请求中按照如下方式处理，然后根据上传成功和失败的回调做相应的事情<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function">ublic <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">uploadCover</span><span class="params">(<span class="keyword">final</span> Context context, <span class="keyword">final</span> String url, <span class="keyword">final</span> String path,</span></span></div><div class="line"><span class="function"><span class="params">                                   <span class="keyword">final</span> UploadLiveCoverListener listener)</span> </span>&#123;</div><div class="line">        ThreadPoolUtils.execute(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="comment">// 添加密钥</span></div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    HttpClient client = <span class="keyword">new</span> DefaultHttpClient();</div><div class="line">                    MultipartEntity multipartContent = getEntity(context,</div><div class="line">                            <span class="keyword">new</span> HashMap&lt;String, String&gt;());</div><div class="line">                    FileBody fileBody = <span class="keyword">new</span> FileBody(<span class="keyword">new</span> File(path), <span class="string">"image/jpeg"</span>, <span class="string">"UTF-8"</span>);</div><div class="line">                    multipartContent.addPart(<span class="string">"image"</span>, fileBody);</div><div class="line">                    String ret = doPost(context, url, multipartContent, client);</div><div class="line">                    JSONObject json = <span class="keyword">new</span> JSONObject(ret);</div><div class="line">                    <span class="keyword">int</span> status = json.getInt(<span class="string">"status"</span>);</div><div class="line">                    <span class="keyword">if</span> (status == <span class="number">0</span>) &#123;</div><div class="line">                        JSONObject resultO = json.getJSONObject(<span class="string">"result"</span>);</div><div class="line">                        String imgUrl = resultO.getString(<span class="string">"img_url"</span>);</div><div class="line">                        listener.onUploadSuccess(imgUrl);</div><div class="line">                    &#125;<span class="keyword">else</span> &#123;</div><div class="line">                        listener.onUploadFail(status);</div><div class="line">                    &#125;</div><div class="line">                    deleteTempAndRaw(path);</div><div class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                    listener.onUploadFail(-<span class="number">1</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
 <h2 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a>代码下载</h2><p>源代码地址：<a href="http://download.csdn.net/detail/s003603u/9384582" target="_blank" rel="external">选我选我选我</a></p>
 
-        </div>
-        <div class="post-reply">
+            </div>
+
+            <!-- Post Comments -->
             
-                <!-- 来必力City版安装代码 -->
-                <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE4Ni81NzUz">
-                    <script type="text/javascript">
-                        (function(d, s) {
-                            var j, e = d.getElementsByTagName(s)[0];
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
 
-                            if (typeof LivereTower === 'function') { return; }
-
-                            j = d.createElement(s);
-                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                            j.async = true;
-
-                            e.parentNode.insertBefore(j, e);
-                        })(document, 'script');
-                    </script>
-                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-                </div>
-                <!-- City版安装代码已完成 -->
-            
-            
-        </div>
-    </div>
-</section>
-<script>
-    // 获取第一张图, 用以当封面背景图
-    var img = document.querySelectorAll('img')[1]
-
-    if (img) {
-        var header_box = document.querySelector('#header_box')
-        header_box.style.backgroundImage = 'url('+ img.src +')'
-    }
-</script>
-      </div>
-  </div>
-  <style>
-  #footer {
-    min-height: 10vh;
-    background: black;
-    color: #fff;
-  }
-
-  #footer a {
-    color: #e1e1e1;
-  }
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
 </style>
-<footer id="footer" class="has-text-centered is-flex center">
-  <div class="container has-padding">
-    <div>
-      <div>
-        <!--请您保留作者署名, 主题制作来之不易-->
-        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
-        <br>
-        Copyright © SuS 2017
-        <br>
-        Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
-      </div>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2016/04/05/图片选取、拍摄、裁剪、上传/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2016/04/05/图片选取、拍摄、裁剪、上传/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
     </div>
-  </div>
-</footer>
-
-<script src="/js/search_core.js"></script>
-<script src="/js/script.js"></script>
-
 </body>
+
+
+
+ 	
 </html>

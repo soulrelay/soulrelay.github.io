@@ -1,172 +1,119 @@
-<!DOCTYPE html>
-<html class="full-height">
+<!DOCTYPE HTML>
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-  
-  <title>Android-architecture之MVC、MVP、MVVM、Data-Binding | SuS&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC] 传送门Android Architecture（Is Activity God？） MVC结构简介 实例分析 Controller控制器式  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566">
-<meta name="keywords" content="Android Architecture">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Android-architecture之MVC、MVP、MVVM、Data-Binding">
-<meta property="og:url" content="http://yoursite.com/2016/05/27/Android-architecture之MVC、MVP、MVVM、Data-Binding/index.html">
-<meta property="og:site_name" content="SuS&#39;s Blog">
-<meta property="og:description" content="[TOC] 传送门Android Architecture（Is Activity God？） MVC结构简介 实例分析 Controller控制器式  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.blog.csdn.net/20160516105225460">
-<meta property="og:image" content="http://img.blog.csdn.net/20160516155514982">
-<meta property="og:image" content="http://img.blog.csdn.net/20160516161401197">
-<meta property="og:image" content="http://img.blog.csdn.net/20160513112553811">
-<meta property="og:image" content="http://img.blog.csdn.net/20160513164339063">
-<meta property="og:image" content="http://img.blog.csdn.net/20160513113256749">
-<meta property="og:image" content="http://img.blog.csdn.net/20160513113408353">
-<meta property="og:image" content="http://img.blog.csdn.net/20160513121034417">
-<meta property="og:image" content="http://img.blog.csdn.net/20160516163914095">
-<meta property="og:image" content="http://img.blog.csdn.net/20160513113127889">
-<meta property="og:image" content="http://img.blog.csdn.net/20160513113209084">
-<meta property="og:updated_time" content="2016-05-27T02:29:42.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android-architecture之MVC、MVP、MVVM、Data-Binding">
-<meta name="twitter:description" content="[TOC] 传送门Android Architecture（Is Activity God？） MVC结构简介 实例分析 Controller控制器式  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20160516105225460">
-  
-    <link rel="alternate" href="/atom.xml" title="SuS&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/common.css">
-<link rel="stylesheet" href="/css/nav.css">
-<link rel="stylesheet" href="/css/layout.css">
-  
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.png"/>
+	 <link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			
+    <title>
+    SuS's Blog
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
 
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
 </head>
+    
+		
+<!-- Layouts -->
 
-<body>
-  <header id="navbar" class="overflow-hidden">
-  <div class="container">
-    <nav class="nav">
-         <div class="nav-left">
-            <a href="/" class="nav-item" style="font-size: 20px;">
-              <span class="logo">Diskobólos</span>'s Blog
-            </a>
-         </div>
-        <div class="nav-center is-hidden position-relative" id="search_container">
-            <div class="nav-item full-width full-height">
-                <i class="fa fa-search has-padding" aria-hidden="true"></i>
-                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
-                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
-            </div>
-            <div id="search_result"></div>
-        </div>
-        <div class="nav-right nav-menu">
-            <a class="nav-item" id="search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </a>
-            
-            <a class="nav-item" href="/">
-                Home
-            </a>
-            
-            <a class="nav-item" href="/works">
-                My Works
-            </a>
-            
-            <a class="nav-item" href="/about">
-                About
-            </a>
-            
-        </div>
-        <span class="nav-toggle" id="navMenuDropdown">
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
-        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
-            
-            <a class="nav-item flex-1" href="/">
-                Home
-            </a>
-            
-            <a class="nav-item flex-1" href="/works">
-                My Works
-            </a>
-            
-            <a class="nav-item flex-1" href="/about">
-                About
-            </a>
-            
-        </div>
-    </nav>
-  </div>
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_solarized.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">MICCALL</a>
 </header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/Android/">Android</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
 
-  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
-      <div class="main-inner-content">
-          <!--博文页面-->
 
-<style>
-    .header-box {
-        height: 370px;
-        filter: blur(10px);
-        background-size: cover;
-        background-color: lightsteelblue;
-    }
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/miccall" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
 
-    .post-box {
-        padding: 15px;
-        padding-top: 60px;
-        min-height: 80vh;
-        margin-top: -200px;
-        border-radius: 4px;
-        background-color: rgba(255,255,255,.8);
-    }
-
-    .post-avatar {
-        height: 30px;
-        width: 30px;
-        border-radius: 50%;
-    }
-
-    .flow-chart {
-        text-align: center;
-    }
-
-    img[alt="post-cover"] {
-        display: none;
-    }
-</style>
-<header>
-    <div id="header_box" class="header-box"></div>
-</header>
-<section>
-    <div class="container post-box">
-        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
-            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
-                <strong>Android-architecture之MVC、MVP、MVVM、Data-Binding</strong>
-            </h1>
-            
-            <div class="is-flex align-center">
-                <img class="post-avatar" src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-shadow-circle-512.png">
-                <span style="padding:0 10px;"> <span class="sub-title">By</span> Diskobólos</span>
-                <span class="post-date sub-title">at: 2016-05-27</span>
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Android-architecture之MVC、MVP、MVVM、Data-Binding</h2></a>
             </div>
-            
-                <div>
-                    
-                         <a class="tag is-post-tag" href="/tags/Android-Architecture/">Android Architecture</a>
-                    
-                </div>
-            
-        </div>
-        <div class="content" style="overflow: auto">
-            <p>[TOC]</p>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p>[TOC]</p>
 <h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a><font color="#C4573C" size="5" face="黑体">传送门</font></h1><p><a href="http://blog.csdn.net/s003603u/article/details/51485709" target="_blank" rel="external">Android Architecture（Is Activity God？）</a></p>
 <h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a><font color="#C4573C" size="5" face="黑体">MVC</font></h1><h2 id="结构简介"><a href="#结构简介" class="headerlink" title="结构简介"></a><font color="#C4573C" size="4" face="黑体">结构简介</font></h2><p><img src="http://img.blog.csdn.net/20160516105225460" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20160516155514982" alt="这里写图片描述"></p>
 <h2 id="实例分析"><a href="#实例分析" class="headerlink" title="实例分析"></a><font color="#C4573C" size="4" face="黑体">实例分析</font></h2><p><img src="http://img.blog.csdn.net/20160516161401197" alt="这里写图片描述"></p>
@@ -212,71 +159,108 @@
 <p><a href="https://github.com/LyndonChin/MasteringAndroidDataBinding/" target="_blank" rel="external">精通 Android Data Binding</a><br> <a href="http://blog.csdn.net/qibin0506/article/details/47393725" target="_blank" rel="external">Android官方数据绑定框架DataBinding(一)</a><br> <a href="http://blog.csdn.net/qibin0506/article/details/47720125" target="_blank" rel="external">Android官方数据绑定框架DataBinding(二)</a><br><a href="https://developer.android.com/topic/libraries/data-binding/index.html#build_environment" target="_blank" rel="external">官方Data Binding Library</a></p>
 <h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a><font color="#C4573C" size="4" face="黑体">参考链接：</font></h2><p>1、<a href="https://www.zhihu.com/question/21406685" target="_blank" rel="external">https://www.zhihu.com/question/21406685</a><br>2、<a href="http://liuling123.com/2015/12/mvp-pattern-android.html" target="_blank" rel="external">http://liuling123.com/2015/12/mvp-pattern-android.html</a><br>3、<a href="http://www.2cto.com/kf/201506/405766.html" target="_blank" rel="external">http://www.2cto.com/kf/201506/405766.html</a><br>4、<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0313/2599.html" target="_blank" rel="external">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0313/2599.html</a><br>5、<a href="http://blog.csdn.net/qibin0506/article/details/47393725" target="_blank" rel="external">http://blog.csdn.net/qibin0506/article/details/47393725</a><br>6、<a href="http://zjutkz.net/2016/04/13/%E9%80%89%E6%8B%A9%E6%81%90%E6%83%A7%E7%97%87%E7%9A%84%E7%A6%8F%E9%9F%B3%EF%BC%81%E6%95%99%E4%BD%A0%E8%AE%A4%E6%B8%85MVC%EF%BC%8CMVP%E5%92%8CMVVM/#plg_nld=1&amp;plg_auth=1&amp;plg_nld=1&amp;plg_dev=1&amp;plg_uin=1&amp;plg_usr=1&amp;plg_vkey=1&amp;plg_nld=1&amp;more?hmsr=toutiao.io&amp;utm_source=toutiao.io&amp;plg_uin=1&amp;plg_auth=1&amp;utm_medium=toutiao.io&amp;plg_dev=1&amp;plg_nld=1&amp;plg_usr=1&amp;plg_vkey=1" target="_blank" rel="external">http://zjutkz.net/2016/04/13/%E9%80%89%E6%8B%A9%E6%81%90%E6%83%A7%E7%97%87%E7%9A%84%E7%A6%8F%E9%9F%B3%EF%BC%81%E6%95%99%E4%BD%A0%E8%AE%A4%E6%B8%85MVC%EF%BC%8CMVP%E5%92%8CMVVM/#plg_nld=1&amp;plg_auth=1&amp;plg_nld=1&amp;plg_dev=1&amp;plg_uin=1&amp;plg_usr=1&amp;plg_vkey=1&amp;plg_nld=1&amp;more?hmsr=toutiao.io&amp;utm_source=toutiao.io&amp;plg_uin=1&amp;plg_auth=1&amp;utm_medium=toutiao.io&amp;plg_dev=1&amp;plg_nld=1&amp;plg_usr=1&amp;plg_vkey=1</a><br>7、<a href="http://blog.csdn.net/wusuopubupt/article/details/8817826" target="_blank" rel="external">http://blog.csdn.net/wusuopubupt/article/details/8817826</a><br>8、<a href="https://github.com/LyndonChin/MasteringAndroidDataBinding\" target="_blank" rel="external">https://github.com/LyndonChin/MasteringAndroidDataBinding\</a><br>9、<a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="external">https://github.com/googlesamples/android-architecture</a><br>10、<a href="http://www.jianshu.com/p/569ab68da482" target="_blank" rel="external">http://www.jianshu.com/p/569ab68da482</a><br>11、<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0425/4178.html" target="_blank" rel="external">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0425/4178.html</a><br>12、<a href="http://blog.csdn.net/vector_yi/article/details/24719873" target="_blank" rel="external">http://blog.csdn.net/vector_yi/article/details/24719873</a></p>
 
-        </div>
-        <div class="post-reply">
+            </div>
+
+            <!-- Post Comments -->
             
-                <!-- 来必力City版安装代码 -->
-                <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE4Ni81NzUz">
-                    <script type="text/javascript">
-                        (function(d, s) {
-                            var j, e = d.getElementsByTagName(s)[0];
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
 
-                            if (typeof LivereTower === 'function') { return; }
-
-                            j = d.createElement(s);
-                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                            j.async = true;
-
-                            e.parentNode.insertBefore(j, e);
-                        })(document, 'script');
-                    </script>
-                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-                </div>
-                <!-- City版安装代码已完成 -->
-            
-            
-        </div>
-    </div>
-</section>
-<script>
-    // 获取第一张图, 用以当封面背景图
-    var img = document.querySelectorAll('img')[1]
-
-    if (img) {
-        var header_box = document.querySelector('#header_box')
-        header_box.style.backgroundImage = 'url('+ img.src +')'
-    }
-</script>
-      </div>
-  </div>
-  <style>
-  #footer {
-    min-height: 10vh;
-    background: black;
-    color: #fff;
-  }
-
-  #footer a {
-    color: #e1e1e1;
-  }
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
 </style>
-<footer id="footer" class="has-text-centered is-flex center">
-  <div class="container has-padding">
-    <div>
-      <div>
-        <!--请您保留作者署名, 主题制作来之不易-->
-        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
-        <br>
-        Copyright © SuS 2017
-        <br>
-        Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
-      </div>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2016/05/27/Android-architecture之MVC、MVP、MVVM、Data-Binding/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2016/05/27/Android-architecture之MVC、MVP、MVVM、Data-Binding/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2017总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
     </div>
-  </div>
-</footer>
-
-<script src="/js/search_core.js"></script>
-<script src="/js/script.js"></script>
-
 </body>
+
+
+
+ 	
 </html>
