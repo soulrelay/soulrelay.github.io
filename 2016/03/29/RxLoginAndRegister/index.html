@@ -117,7 +117,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxLoginAndRegister">
 <meta property="og:url" content="http://yoursite.com/2016/03/29/RxLoginAndRegister/index.html">
-<meta property="og:site_name" content="SuS&#39;s Blog">
+<meta property="og:site_name" content="SuS&#39;s World">
 <meta property="og:description" content="RxLoginAndRegister主要包含客户端和服务端两个部分： 客户端使用RxJava和Retrofit搭配完成基本的登录和注册功能   RxJava：一个在 Java VM 上使用可观测的序列来组成异步的、基于事件的程序的库（说到根上，它就是一个实现异步操作的库） Retrofit: 类型安全的网络库，封装了okhttp   登录api一个带有两个参数的post请求12345public">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/feifei003603/RxLoginAndRegister/master/app/src/main/res/raw/login.jpg">
@@ -135,7 +135,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -161,7 +161,7 @@
 
 
 
-  <title>RxLoginAndRegister | SuS's Blog</title>
+  <title>RxLoginAndRegister | SuS's World</title>
   
 
 
@@ -197,7 +197,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">SuS's Blog</span>
+        <span class="site-title">SuS's World</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -347,7 +347,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SuS's Blog">
+      <meta itemprop="name" content="SuS's World">
     </span>
 
     
@@ -599,6 +599,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -741,6 +743,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -801,11 +810,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
   </div>

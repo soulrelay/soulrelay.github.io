@@ -116,7 +116,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="categories">
 <meta property="og:url" content="http://yoursite.com/categories/index.html">
-<meta property="og:site_name" content="SuS&#39;s Blog">
+<meta property="og:site_name" content="SuS&#39;s World">
 <meta property="og:description" content="手掌一散，流落走多少时光">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-03-30T04:57:56.000Z">
@@ -131,7 +131,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -157,7 +157,7 @@
 
 
 
-  <title>categories | SuS's Blog</title>
+  <title>categories | SuS's World</title>
   
 
 
@@ -193,7 +193,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">SuS's Blog</span>
+        <span class="site-title">SuS's World</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -385,6 +385,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -502,6 +504,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -562,11 +571,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
   </div>

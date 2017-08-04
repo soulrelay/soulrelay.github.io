@@ -117,7 +117,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android图片加载库的封装实战">
 <meta property="og:url" content="http://yoursite.com/2016/12/05/Android图片加载库的封装实战/index.html">
-<meta property="og:site_name" content="SuS&#39;s Blog">
+<meta property="og:site_name" content="SuS&#39;s World">
 <meta property="og:description" content="重磅更新 || 2017-02-16使用ImageLoaderUtil实现一个真正意义的图集功能，持续完善和更新中 Gallery Gallery Gallery 重要的东西贴三遍！ 2017-05-09 || 优化圆形图片加载 更新demo 前言  图片加载是Android开发中最最基础的功能，为了降低开发周期和难度，我们经常会选用一些图片加载的开源库 选取第三方SDK需要谨慎 二次封装   注">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20170509120606770?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvczAwMzYwM3U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
@@ -136,7 +136,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -162,7 +162,7 @@
 
 
 
-  <title>Android图片加载库的封装实战 | SuS's Blog</title>
+  <title>Android图片加载库的封装实战 | SuS's World</title>
   
 
 
@@ -198,7 +198,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">SuS's Blog</span>
+        <span class="site-title">SuS's World</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -348,7 +348,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SuS's Blog">
+      <meta itemprop="name" content="SuS's World">
     </span>
 
     
@@ -700,6 +700,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -842,6 +844,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -902,11 +911,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
   </div>

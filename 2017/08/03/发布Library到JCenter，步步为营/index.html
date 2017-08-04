@@ -117,7 +117,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="发布Library到JCenter，步步为营">
 <meta property="og:url" content="http://yoursite.com/2017/08/03/发布Library到JCenter，步步为营/index.html">
-<meta property="og:site_name" content="SuS&#39;s Blog">
+<meta property="og:site_name" content="SuS&#39;s World">
 <meta property="og:description" content="前言将自己写的库上传到Jcenter或者Maven提供给自己或者别人使用，在构建项目的时候只要写上一行如下类似的引用代码即可引用自己的库1compile &apos;com.sus.library:imagelib:1.0.0&apos; 看到这篇文章的同学可能之前已经踩了不少坑，希望下面的介绍可以帮你解惑如果有什么问题欢迎提出！趁热乎哈！ 下面将逐步介绍如何将Library发布到JCenter 具体案例为：Imag">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1814304-c002779dfbdfcedf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/h/620">
@@ -143,7 +143,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -169,7 +169,7 @@
 
 
 
-  <title>发布Library到JCenter，步步为营 | SuS's Blog</title>
+  <title>发布Library到JCenter，步步为营 | SuS's World</title>
   
 
 
@@ -205,7 +205,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">SuS's Blog</span>
+        <span class="site-title">SuS's World</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -355,7 +355,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SuS's Blog">
+      <meta itemprop="name" content="SuS's World">
     </span>
 
     
@@ -678,6 +678,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -820,6 +822,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -880,11 +889,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
   </div>

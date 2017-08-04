@@ -117,7 +117,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="列表全家桶之刷新、加载更多、悬浮、左滑删除">
 <meta property="og:url" content="http://yoursite.com/2016/09/26/列表全家桶之刷新、加载更多、悬浮、左滑删除/index.html">
-<meta property="og:site_name" content="SuS&#39;s Blog">
+<meta property="og:site_name" content="SuS&#39;s World">
 <meta property="og:description" content="需求直播入口 功能点  下拉刷新历史数据（这里自定义了refresh header，颠球，射门一气呵成~~） 上拉加载更多比赛 时间头悬浮 两个“今天”的定位锚点 内部相关的业务模型采用MVP构建算是对Android-architecture之MVC、MVP、MVVM、Data-Binding中的MVP进一步的升级，抽取出了BasePresenter、BaseView、MVPBaseActivit">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20160924143742239">
@@ -136,7 +136,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -162,7 +162,7 @@
 
 
 
-  <title>列表全家桶之刷新、加载更多、悬浮、左滑删除 | SuS's Blog</title>
+  <title>列表全家桶之刷新、加载更多、悬浮、左滑删除 | SuS's World</title>
   
 
 
@@ -198,7 +198,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">SuS's Blog</span>
+        <span class="site-title">SuS's World</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -348,7 +348,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SuS's Blog">
+      <meta itemprop="name" content="SuS's World">
     </span>
 
     
@@ -602,6 +602,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -744,6 +746,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -804,11 +813,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
   </div>

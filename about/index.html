@@ -116,7 +116,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="欢迎来到我的世界">
 <meta property="og:url" content="http://yoursite.com/about/index.html">
-<meta property="og:site_name" content="SuS&#39;s Blog">
+<meta property="og:site_name" content="SuS&#39;s World">
 <meta property="og:description" content="用心观察    我的CSDN博客地址：http://blog.csdn.net/s003603u 我的GitHub地址：https://github.com/soulrelay 我的简书地址：http://www.jianshu.com/u/514ca03bbc17 我的掘金地址：https://juejin.im/user/56f3d9d1816dfa00522b8f20   秋景，俄罗斯的郊外">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20160802161541110">
@@ -164,7 +164,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -190,7 +190,7 @@
 
 
 
-  <title>欢迎来到我的世界 | SuS's Blog</title>
+  <title>欢迎来到我的世界 | SuS's World</title>
   
 
 
@@ -226,7 +226,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">SuS's Blog</span>
+        <span class="site-title">SuS's World</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -492,6 +492,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -609,6 +611,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -669,11 +678,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
   </div>

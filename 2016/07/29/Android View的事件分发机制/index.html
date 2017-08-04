@@ -117,7 +117,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android View的事件分发机制">
 <meta property="og:url" content="http://yoursite.com/2016/07/29/Android View的事件分发机制/index.html">
-<meta property="og:site_name" content="SuS&#39;s Blog">
+<meta property="og:site_name" content="SuS&#39;s World">
 <meta property="og:description" content="前言关于Android View事件分发机制的一个小结，基于他人分析以及个人理解，方便自己记录以及回忆，使用了一些UML图和流程图对部分流程进行了细化，并加入了自己的理解，期间参考了几篇比较优秀（不同博文可能针对的Android代码版本不同，存在些许出入，但是大致逻辑一致）的关于事件分发机制的博文，已在参考链接中列出。 该篇博文更适合那些对事件分发机制基本了解但是仍然缺少一个系统化轮廓的朋友，只是">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20160729153418582">
@@ -137,7 +137,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -163,7 +163,7 @@
 
 
 
-  <title>Android View的事件分发机制 | SuS's Blog</title>
+  <title>Android View的事件分发机制 | SuS's World</title>
   
 
 
@@ -199,7 +199,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">SuS's Blog</span>
+        <span class="site-title">SuS's World</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -349,7 +349,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SuS's Blog">
+      <meta itemprop="name" content="SuS's World">
     </span>
 
     
@@ -602,6 +602,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -744,6 +746,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -804,11 +813,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
   </div>
