@@ -478,6 +478,17 @@
                 </a>
               </span>
             
+              <span class="links-of-author-item">
+                <a href="https://juejin.im/user/56f3d9d1816dfa00522b8f20" target="_blank" title="掘金">
+                  
+                    <i class="fa fa-fw fa-/images/juejin.jpg"></i>
+                  
+                    
+                      掘金
+                    
+                </a>
+              </span>
+            
           
         </div>
 
@@ -998,54 +1009,6 @@
           // remove loading animation
           $(".local-search-pop-overlay").remove();
           $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-verflow', '');
 
           proceedsearch();
         }
