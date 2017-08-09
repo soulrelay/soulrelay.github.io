@@ -124,7 +124,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20170808211529285?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvczAwMzYwM3U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170808234235943?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvczAwMzYwM3U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170809113809371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvczAwMzYwM3U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-08-09T09:19:50.000Z">
+<meta property="og:updated_time" content="2017-08-09T09:39:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android关于ThreadLocal的思考和总结">
 <meta name="twitter:description" content="前言Handler机制引出ThreadLocal  关于ThreadLocal的分析，首先得从Android的消息机制谈起，可能我们最先想到的就是Android消息机制的上层接口Handler 为了避免ANR，我们会通常把耗时操作放在子线程里面去执行，因为子线程不能更新UI，所以当子线程需要更新UI的时候就需要借助到Android的消息机制，也就是Handler机制了   关于Handler的原理">
@@ -570,6 +570,15 @@
 </ul>
 </blockquote>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a><font color="#C4573C" size="5" face="黑体">参考</font></h2><p><a href="https://www.zhihu.com/question/23089780" target="_blank" rel="external">https://www.zhihu.com/question/23089780</a><br><a href="https://github.com/pzxwhc/MineKnowContainer/issues/12" target="_blank" rel="external">https://github.com/pzxwhc/MineKnowContainer/issues/12</a><br><a href="https://github.com/pzxwhc/MineKnowContainer/issues/20" target="_blank" rel="external">https://github.com/pzxwhc/MineKnowContainer/issues/20</a><br><a href="http://blog.csdn.net/singwhatiwanna/article/details/48350919" target="_blank" rel="external">http://blog.csdn.net/singwhatiwanna/article/details/48350919</a><br><a href="http://www.cnblogs.com/onlywujun/p/3524675.html" target="_blank" rel="external">http://www.cnblogs.com/onlywujun/p/3524675.html</a></p>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a><font color="#C4573C" size="5" face="黑体">其它</font></h2><blockquote>
+<ul>
+<li>我的CSDN博客地址：<a href="http://blog.csdn.net/s003603u" target="_blank" rel="external">http://blog.csdn.net/s003603u</a></li>
+<li>我的GitHub地址：<a href="https://github.com/soulrelay" target="_blank" rel="external">https://github.com/soulrelay</a></li>
+<li>我的简书地址：<a href="http://www.jianshu.com/u/514ca03bbc17" target="_blank" rel="external">http://www.jianshu.com/u/514ca03bbc17</a></li>
+<li>我的掘金地址：<a href="https://juejin.im/user/56f3d9d1816dfa00522b8f20" target="_blank" rel="external">https://juejin.im/user/56f3d9d1816dfa00522b8f20</a></li>
+<li>我的个人站点： <a href="http://sushuai.tech/" target="_blank" rel="external">http://sushuai.tech/</a></li>
+</ul>
+</blockquote>
 
       
     </div>
@@ -829,7 +838,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Handler机制引出ThreadLocal"><span class="nav-number">1.1.</span> <span class="nav-text">Handler机制引出ThreadLocal</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#案例展示及运行结果"><span class="nav-number">2.1.</span> <span class="nav-text">案例展示及运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocal类结构预览"><span class="nav-number">2.2.</span> <span class="nav-text">ThreadLocal类结构预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocal探秘"><span class="nav-number">2.3.</span> <span class="nav-text">ThreadLocal探秘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocal源码解读"><span class="nav-number">2.4.</span> <span class="nav-text">ThreadLocal源码解读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocal内存泄漏的问题"><span class="nav-number">2.5.</span> <span class="nav-text">ThreadLocal内存泄漏的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InheritableThreadLocal与ThreadLocal的区别"><span class="nav-number">2.6.</span> <span class="nav-text">InheritableThreadLocal与ThreadLocal的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Handler机制引出ThreadLocal"><span class="nav-number">1.1.</span> <span class="nav-text">Handler机制引出ThreadLocal</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#案例展示及运行结果"><span class="nav-number">2.1.</span> <span class="nav-text">案例展示及运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocal类结构预览"><span class="nav-number">2.2.</span> <span class="nav-text">ThreadLocal类结构预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocal探秘"><span class="nav-number">2.3.</span> <span class="nav-text">ThreadLocal探秘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocal源码解读"><span class="nav-number">2.4.</span> <span class="nav-text">ThreadLocal源码解读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocal内存泄漏的问题"><span class="nav-number">2.5.</span> <span class="nav-text">ThreadLocal内存泄漏的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InheritableThreadLocal与ThreadLocal的区别"><span class="nav-number">2.6.</span> <span class="nav-text">InheritableThreadLocal与ThreadLocal的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它"><span class="nav-number">4.</span> <span class="nav-text">其它</span></a></li></ol></div>
             
 
           </div>
