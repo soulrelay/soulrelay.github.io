@@ -116,7 +116,7 @@
 <meta name="keywords" content="ThreadLocal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android关于ThreadLocal的思考和总结">
-<meta property="og:url" content="http://yoursite.com/2016/03/30/Android关于ThreadLocal的思考和总结/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/08/09/Android关于ThreadLocal的思考和总结/index.html">
 <meta property="og:site_name" content="SuS&#39;s World">
 <meta property="og:description" content="前言Handler机制引出ThreadLocal  关于ThreadLocal的分析，首先得从Android的消息机制谈起，可能我们最先想到的就是Android消息机制的上层接口Handler 为了避免ANR，我们会通常把耗时操作放在子线程里面去执行，因为子线程不能更新UI，所以当子线程需要更新UI的时候就需要借助到Android的消息机制，也就是Handler机制了   关于Handler的原理">
 <meta property="og:locale" content="zh-Hans">
@@ -124,7 +124,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20170808211529285?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvczAwMzYwM3U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170808234235943?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvczAwMzYwM3U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170809113809371?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvczAwMzYwM3U=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-08-09T09:10:32.000Z">
+<meta property="og:updated_time" content="2017-08-09T09:15:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android关于ThreadLocal的思考和总结">
 <meta name="twitter:description" content="前言Handler机制引出ThreadLocal  关于ThreadLocal的分析，首先得从Android的消息机制谈起，可能我们最先想到的就是Android消息机制的上层接口Handler 为了避免ANR，我们会通常把耗时操作放在子线程里面去执行，因为子线程不能更新UI，所以当子线程需要更新UI的时候就需要借助到Android的消息机制，也就是Handler机制了   关于Handler的原理">
@@ -157,7 +157,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/03/30/Android关于ThreadLocal的思考和总结/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/09/Android关于ThreadLocal的思考和总结/"/>
 
 
 
@@ -340,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/30/Android关于ThreadLocal的思考和总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/09/Android关于ThreadLocal的思考和总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SuS">
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-30T12:57:30+08:00">
-                2016-03-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-09T17:15:00+08:00">
+                2017-08-09
               </time>
             
 
@@ -411,8 +411,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/03/30/Android关于ThreadLocal的思考和总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2016/03/30/Android关于ThreadLocal的思考和总结/" itemprop="commentsCount"></span>
+                <a href="/2017/08/09/Android关于ThreadLocal的思考和总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/09/Android关于ThreadLocal的思考和总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -618,8 +618,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/29/RxLoginAndRegister/" rel="next" title="RxLoginAndRegister">
-                <i class="fa fa-chevron-left"></i> RxLoginAndRegister
+              <a href="/2017/08/03/发布Library到JCenter，步步为营/" rel="next" title="发布Library到JCenter，步步为营">
+                <i class="fa fa-chevron-left"></i> 发布Library到JCenter，步步为营
               </a>
             
           </div>
@@ -627,10 +627,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/05/图片选取、拍摄、裁剪、上传/" rel="prev" title="图片选取、拍摄、裁剪、上传">
-                图片选取、拍摄、裁剪、上传 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1015,7 +1011,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94025, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94025, xid: "2016/03/30/Android关于ThreadLocal的思考和总结/"});
+		_hcwp.push({widget:"Stream", widget_id: 94025, xid: "2017/08/09/Android关于ThreadLocal的思考和总结/"});
 		
 
 		(function() {
